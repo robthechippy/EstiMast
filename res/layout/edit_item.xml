@@ -185,27 +185,6 @@
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content">
 
-						<TextView
-							android:layout_height="wrap_content"
-							android:text="Sale price/Unit:"
-							android:textAppearance="?android:attr/textAppearanceSmall"
-							android:layout_width="wrap_content"
-							android:layout_gravity="right"/>
-
-						<EditText
-							android:layout_height="wrap_content"
-							android:inputType="numberDecimal"
-							android:layout_width="wrap_content"
-							android:id="@+id/txt_sale_price"
-							android:textSize="16sp"
-							android:hint="Final sale price"/>
-
-					</TableRow>
-
-					<TableRow
-						android:layout_height="wrap_content"
-						android:layout_width="wrap_content">
-
 						<CheckBox
 							android:layout_height="wrap_content"
 							android:layout_width="wrap_content"
@@ -238,6 +217,48 @@
 							</TableRow>
 
 						</TableLayout>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Tax amount:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="numberDecimal"
+							android:layout_width="wrap_content"
+							android:id="@+id/txt_item_tax_amount"
+							android:textSize="16sp"
+							android:hint="Tax payable"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Sale price/Unit:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="numberDecimal"
+							android:layout_width="wrap_content"
+							android:id="@+id/txt_sale_price"
+							android:textSize="16sp"
+							android:hint="Final sale price"/>
 
 					</TableRow>
 
@@ -682,6 +703,156 @@
 							android:text="Add supplier"
 							android:layout_width="wrap_content"
 							android:id="@+id/btn_item_addsupplier"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="match_parent"
+						android:layout_width="match_parent">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Price checked:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="date"
+							android:layout_width="wrap_content"
+							android:id="@+id/txt_item_checked_date"
+							android:textSize="16sp"
+							android:hint="Date price last verified"/>
+
+					</TableRow>
+
+				</TableLayout>
+
+			</ScrollView>
+
+			<ScrollView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:id="@+id/tabD">
+
+				<TableLayout
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:stretchColumns="1"
+					android:shrinkColumns="1">
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Stock on hand"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="number"
+							android:layout_width="wrap_content"
+							android:id="@+id/txt_item_stock_onhand"
+							android:textSize="16sp"
+							android:hint="Amount of stock on hand."/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Stock on order:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="number"
+							android:layout_width="wrap_content"
+							android:id="@+id/txt_item_stock_onorder"
+							android:textSize="16sp"
+							android:hint="Count of stock on order."/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="match_parent"
+						android:layout_width="match_parent">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Total stock:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="number"
+							android:layout_width="wrap_content"
+							android:id="@+id/txt_item_stock_total"
+							android:textSize="16sp"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Barcode:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="number"
+							android:layout_width="match_parent"
+							android:id="@+id/txt_item_stock_barcode"
+							android:textSize="16sp"
+							android:hint="Click and scan"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Location:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="textPersonName"
+							android:layout_width="wrap_content"
+							android:id="@+id/txt_item_stock_location"
+							android:textSize="16sp"
+							android:hint="Where the item is found"/>
 
 					</TableRow>
 

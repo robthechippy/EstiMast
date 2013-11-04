@@ -36,7 +36,9 @@ public class ItemEdit extends Activity
 		spec.setIndicator("Supplier");
 		tabs.addTab(spec);
 		
-		spec.setContent(R.id.tabC);
+		spec=tabs.newTabSpec("tag4");
+		
+		spec.setContent(R.id.tabD);
 		spec.setIndicator("Stock");
 		tabs.addTab(spec);
 		
