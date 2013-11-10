@@ -518,7 +518,7 @@
 							android:layout_width="wrap_content"
 							android:id="@+id/txt_item_hgt"
 							android:textSize="16sp"
-							android:hint="Enter item length"/>
+							android:hint="Enter item height"/>
 
 					</TableRow>
 
@@ -799,7 +799,8 @@
 							android:inputType="number"
 							android:layout_width="wrap_content"
 							android:id="@+id/txt_item_stock_total"
-							android:textSize="16sp"/>
+							android:textSize="16sp"
+							android:hint="On hand + on order"/>
 
 					</TableRow>
 
@@ -855,6 +856,11 @@
 							android:hint="Where the item is found"/>
 
 					</TableRow>
+
+					<ImageView
+						android:adjustViewBounds="true"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"/>
 
 				</TableLayout>
 
