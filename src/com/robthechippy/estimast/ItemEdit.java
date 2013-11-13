@@ -16,6 +16,9 @@ public class ItemEdit extends Activity
 
 	Spinner spnCat = null;
 	CatagoryHelper catHelper = null;
+	
+	Spinner spnTax = null;
+	TaxHelper taxHelper = null;
 	//Cursor catCursor = null;
 	
 	
@@ -29,8 +32,10 @@ public class ItemEdit extends Activity
         setContentView(R.layout.edit_item);
 	
 		catHelper=new CatagoryHelper(this);
-		
 		spnCat=(Spinner)findViewById(R.id.spn_catagory);
+		
+		taxHelper = new TaxHelper(this);
+		spnTax = (Spinner)findViewById(R.id.spn_item_taxType);
 		
 		/* Setup tabs */
 		TabHost tabs=(TabHost)findViewById(R.id.tabhost);
@@ -62,25 +67,38 @@ public class ItemEdit extends Activity
 		tabs.addTab(spec);
 		
 		/* Setup catagory spinner */
-		loadSpinnerData();
+		loadSpnCatData();
+		
+		/* Setup tax spinner */
+		loadSpnTaxData();
 		
 		
     }
 	
 	
-	private void loadSpinnerData() {
-		// database handler
-		//DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+	private void loadSpnCatData() {
+		
 		// Spinner Drop down elements
-		//List<String> lables = 
-		catHelper.getAllLabels();
+		List<String> lables = catHelper.getAllLabels();
 		// Creating adapter for spinner
-		//ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, lables);
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, lables);
 			// Drop down layout style - list view with radio button
-			//dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		// attaching data adapter to spinner
-		//spnCat.setAdapter(dataAdapter);
+		spnCat.setAdapter(dataAdapter);
 		
 	}
 	
+	private void loadSpnTaxData() {
+		
+		// Spinner Drop down elements
+		List<String> lables = taxHelper.getAllLabels();
+		// Creating adapter for spinner
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, lables);
+			// Drop down layout style - list view with radio button
+			dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// attaching data adapter to spinner
+		spnTax.setAdapter(dataAdapter);
+		
+	}
 }

@@ -1,6 +1,9 @@
 package com.robthechippy.estimast;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -24,10 +27,13 @@ class TaxHelper extends SQLiteOpenHelper {
 
 		db.execSQL("CREATE TABLE tax (_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, title TEXT, percent FLOAT);");
 
+		cv.put("title", "None");
+		cv.put("percent", 0);
+		db.insert("tax", null, cv);
+		
 		cv.put("title", "GST");
-		cv.put("percent", 10);
-
-		getWritableDatabase().insert("tax", "title", cv);
+		cv.put("percent", 10.0);
+		db.insert("tax", null, cv);
 	}
 
 	@Override
@@ -79,6 +85,34 @@ class TaxHelper extends SQLiteOpenHelper {
 		getWritableDatabase().delete("tax", "_id=?", id);
 
 
+	}
+	
+	/**
+	* Getting all labels
+	* returns list of labels
+	*
+	*/
+	
+	public List<String> getAllLabels(){
+	
+	//public void getAllLabels(){
+		List<String> labels = new ArrayList<String>();
+		// Select All Query
+		//Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM tax", null);
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.rawQuery("SELECT * FROM tax", null);
+		// looping through all rows and adding to list
+		if (cursor.moveToFirst()) {
+			do {
+				labels.add(cursor.getString(1));
+			}
+			while (cursor.moveToNext());
+			}
+		// closing connection
+		cursor.close();
+		//db.close();
+		// returning lables 
+		return labels;
 	}
 
 	//Read individual column data

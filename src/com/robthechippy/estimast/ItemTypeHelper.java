@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 
-
 class ItemTypeHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME="estimast.db";
 	private static final int SCHEMA_VERSION=1;
@@ -26,19 +25,19 @@ class ItemTypeHelper extends SQLiteOpenHelper {
 
 		cv.put("title", "Non inventory");
 		cv.put("type", 0);
-		getWritableDatabase().insert("itemtype", "title", cv);
+		db.insert("itemtype", "title", cv);
 		
 		cv.put("title", "Inventory");
 		cv.put("type", 1);
-		getWritableDatabase().insert("itemtype", "title", cv);
+		db.insert("itemtype", "title", cv);
 		
 		cv.put("title", "Service");
 		cv.put("type", 2);
-		getWritableDatabase().insert("itemtype", "title", cv);
+		db.insert("itemtype", "title", cv);
 		
 		cv.put("title", "Shipping");
 		cv.put("type", 3);
-		getWritableDatabase().insert("itemtype", "title", cv);
+		db.insert("itemtype", "title", cv);
 	}
 
 	@Override

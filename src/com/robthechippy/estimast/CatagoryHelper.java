@@ -28,7 +28,7 @@ class CatagoryHelper extends SQLiteOpenHelper {
 
 		cv.put("title", "Misc");
 
-		getWritableDatabase().insert("catagories", "title", cv);
+		db.insert("catagories", null, cv);
 	}
 
 	@Override
@@ -86,14 +86,16 @@ class CatagoryHelper extends SQLiteOpenHelper {
 	*
 	*/
 	
-	//public List<String> getAllLabels(){
+	public List<String> getAllLabels(){
 	
-	public void getAllLabels(){
+	//public void getAllLabels(){
 		List<String> labels = new ArrayList<String>();
 		// Select All Query
-		Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM catagories", null);
+		Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM catagories", null);
+		//SQLiteDatabase db = this.getReadableDatabase();
+		//Cursor cursor = db.rawQuery("SELECT * FROM catagories", null);
 		// looping through all rows and adding to list
-		/*if (cursor.moveToFirst()) {
+		if (cursor.moveToFirst()) {
 			do {
 				labels.add(cursor.getString(1));
 			}
@@ -101,9 +103,9 @@ class CatagoryHelper extends SQLiteOpenHelper {
 			}
 		// closing connection
 		cursor.close();
-		db.close();
-		// returning lables*/
-		//return labels;
+		//db.close();
+		// returning lables 
+		return labels;
 	}
 	
 			//Read individual column data
