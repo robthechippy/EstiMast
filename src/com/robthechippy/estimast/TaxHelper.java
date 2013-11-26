@@ -11,37 +11,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 
 
-class TaxHelper extends SQLiteOpenHelper {
-	private static final String DATABASE_NAME="estimast.db";
-	private static final int SCHEMA_VERSION=1;
+class TaxHelper {
+	//private static final String DATABASE_NAME="estimast.db";
+	//private static final int SCHEMA_VERSION=1;
+	private dbMaster db=null;
 
 
 	public TaxHelper(Context context) {
-		super(context, DATABASE_NAME, null, SCHEMA_VERSION);
+		//super(context, DATABASE_NAME, null, SCHEMA_VERSION);
+		db = new dbMaster(context);
 
 	}
-
-	@Override
-	public void onCreate(SQLiteDatabase db) {
-		ContentValues cv=new ContentValues();
-
-		db.execSQL("CREATE TABLE tax (_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, title TEXT, percent FLOAT);");
-
-		cv.put("title", "None");
-		cv.put("percent", 0);
-		db.insert("tax", null, cv);
-		
-		cv.put("title", "GST");
-		cv.put("percent", 10.0);
-		db.insert("tax", null, cv);
-	}
-
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// no-op, since will not be called until 2nd schema
-		// version exists
-	}
-
 
 
 	/* Used to load current jobs into the list
@@ -52,7 +32,7 @@ class TaxHelper extends SQLiteOpenHelper {
 
 	//Used to load all the catagories into the list
 	public Cursor getAll() {
-		return(getReadableDatabase()
+		return(db.getReadableDatabase()
             .rawQuery("SELECT * FROM tax",
                       null));
 	}
@@ -65,7 +45,7 @@ class TaxHelper extends SQLiteOpenHelper {
 		cv.put("title", title);
 		cv.put("percent", percent);
 
-		ID=getWritableDatabase().insert("tax", "title", cv);
+		ID=db.getWritableDatabase().insert("tax", "title", cv);
 		//ID=ID-1;
 		return(ID.intValue());
 	}
@@ -77,12 +57,12 @@ class TaxHelper extends SQLiteOpenHelper {
 		cv.put("title", name);
 		cv.put("percent", percent);
 
-		getWritableDatabase().update("tax", cv, "_id=?", id);
+		db.getWritableDatabase().update("tax", cv, "_id=?", id);
 	}
 
 	public void delete(String[] id) {
 		//This will delete the catagory.
-		getWritableDatabase().delete("tax", "_id=?", id);
+		db.getWritableDatabase().delete("tax", "_id=?", id);
 
 
 	}
@@ -98,9 +78,9 @@ class TaxHelper extends SQLiteOpenHelper {
 	//public void getAllLabels(){
 		List<String> labels = new ArrayList<String>();
 		// Select All Query
-		//Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM tax", null);
-		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = db.rawQuery("SELECT * FROM tax", null);
+		Cursor cursor = db.getReadableDatabase().rawQuery("SELECT * FROM tax", null);
+		//SQLiteDatabase db = this.db.getReadableDatabase();
+		//Cursor cursor = db.rawQuery("SELECT * FROM tax", null);
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
 			do {

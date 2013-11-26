@@ -6,38 +6,16 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteDatabase;
 
 
-class CatagoryHelper extends SQLiteOpenHelper {
-	private static final String DATABASE_NAME="estimast.db";
-	private static final int SCHEMA_VERSION=1;
+class CatagoryHelper {
+	private dbMaster db=null;
 
-
+	
 	public CatagoryHelper(Context context) {
-		super(context, DATABASE_NAME, null, SCHEMA_VERSION);
-
-	}
-
-	@Override
-	public void onCreate(SQLiteDatabase db) {
-		ContentValues cv=new ContentValues();
+		db = new dbMaster(context);
 		
-		db.execSQL("CREATE TABLE catagories (_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, title TEXT);");
-
-		cv.put("title", "Misc");
-
-		db.insert("catagories", null, cv);
 	}
-
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// no-op, since will not be called until 2nd schema
-		// version exists
-	}
-
-
 
 			/* Used to load current jobs into the list
 	public Cursor getCurrent() {
@@ -47,7 +25,7 @@ class CatagoryHelper extends SQLiteOpenHelper {
 	
 			//Used to load all the catagories into the list
 	public Cursor getAll() {
-		return(getReadableDatabase()
+		return(db.getReadableDatabase()
             .rawQuery("SELECT * FROM catagories",
                       null));
 	}
@@ -59,7 +37,7 @@ class CatagoryHelper extends SQLiteOpenHelper {
 
 		cv.put("title", title);
 
-		ID=getWritableDatabase().insert("catagories", "title", cv);
+		ID=db.getWritableDatabase().insert("catagories", "title", cv);
 		//ID=ID-1;
 		return(ID.intValue());
 	}
@@ -70,12 +48,12 @@ class CatagoryHelper extends SQLiteOpenHelper {
 
 		cv.put("title", name);
 
-		getWritableDatabase().update("catagories", cv, "_id=?", id);
+		db.getWritableDatabase().update("catagories", cv, "_id=?", id);
 	}
 	
 	public void delete(String[] id) {
 		//This will delete the catagory.
-		getWritableDatabase().delete("catagories", "_id=?", id);
+		db.getWritableDatabase().delete("catagories", "_id=?", id);
 		
 	
 	}
@@ -91,7 +69,7 @@ class CatagoryHelper extends SQLiteOpenHelper {
 	//public void getAllLabels(){
 		List<String> labels = new ArrayList<String>();
 		// Select All Query
-		Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM catagories", null);
+		Cursor cursor = db.getReadableDatabase().rawQuery("SELECT * FROM catagories", null);
 		//SQLiteDatabase db = this.getReadableDatabase();
 		//Cursor cursor = db.rawQuery("SELECT * FROM catagories", null);
 		// looping through all rows and adding to list

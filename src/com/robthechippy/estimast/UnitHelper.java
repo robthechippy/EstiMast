@@ -1,71 +1,25 @@
 package com.robthechippy.estimast;
 
+import java.util.List;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteDatabase;
 
 
-class UnitHelper extends SQLiteOpenHelper {
-	private static final String DATABASE_NAME="estimast.db";
-	private static final int SCHEMA_VERSION=1;
+class UnitHelper {
+	private dbMaster db = null;
 	
 	
 	public UnitHelper(Context context) {
-		super(context, DATABASE_NAME, null, SCHEMA_VERSION);
-
-	}
-
-	@Override
-	public void onCreate(SQLiteDatabase db) {
-		ContentValues cv=new ContentValues();
-		
-		db.execSQL("CREATE TABLE unit (_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, title TEXT, hasparts INTEGER);");
-
-		cv.put("title", "each");
-		cv.put("hasparts", 0);
-		getWritableDatabase().insert("unit", "title", cv);
-		
-		cv.put("title", "lm");
-		cv.put("hasparts", 0);
-		getWritableDatabase().insert("unit", "title", cv);
-		
-		cv.put("title", "Sqr m");
-		cv.put("hasparts", 0);
-		getWritableDatabase().insert("unit", "title", cv);
-		
-		cv.put("title", "Cube m");
-		cv.put("hasparts", 0);
-		getWritableDatabase().insert("unit", "title", cv);
-		
-		cv.put("title", "Pkt");
-		cv.put("hasparts", 1);
-		getWritableDatabase().insert("unit", "title", cv);
-		
-		cv.put("title", "Kg");
-		cv.put("hasparts", 1);
-		getWritableDatabase().insert("unit", "title", cv);
-	}
-
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// no-op, since will not be called until 2nd schema
-		// version exists
+		db = new dbMaster(context);
 	}
 
 
-
-			/* Used to load current jobs into the list
-	public Cursor getCurrent() {
-		return(getReadableDatabase().rawQuery("SELECT * FROM jobs WHERE status<6 ORDER BY status",
-			null));
-	} */
-	
 			//Used to load all the catagories into the list
 	public Cursor getAll() {
-		return(getReadableDatabase()
+		return(db.getReadableDatabase()
             .rawQuery("SELECT * FROM unit",
                       null));
 	}
@@ -78,7 +32,7 @@ class UnitHelper extends SQLiteOpenHelper {
 		cv.put("title", title);
 		cv.put("hasparts", hasparts);
 
-		ID=getWritableDatabase().insert("unit", "title", cv);
+		ID=db.getWritableDatabase().insert("unit", "title", cv);
 		//ID=ID-1;
 		return(ID.intValue());
 	}
@@ -88,17 +42,46 @@ class UnitHelper extends SQLiteOpenHelper {
 		ContentValues cv=new ContentValues();
 
 		cv.put("title", name);
-		cv.put("hasparys", hasparts);
+		cv.put("hasparts", hasparts);
 
-		getWritableDatabase().update("unit", cv, "_id=?", id);
+		db.getWritableDatabase().update("unit", cv, "_id=?", id);
 	}
 	
 	public void delete(String[] id) {
 		//This will delete the catagory.
-		getWritableDatabase().delete("unit", "_id=?", id);
+		db.getWritableDatabase().delete("unit", "_id=?", id);
 		
 	
 	}
+	
+	/**
+	 * Getting all labels
+	 * returns list of labels
+	 *
+	 */
+
+	public List<String> getAllLabels(){
+
+		//public void getAllLabels(){
+		List<String> labels = new ArrayList<String>();
+		// Select All Query
+		Cursor cursor = db.getReadableDatabase().rawQuery("SELECT * FROM unit", null);
+		//SQLiteDatabase db = this.getReadableDatabase();
+		//Cursor cursor = db.rawQuery("SELECT * FROM catagories", null);
+		// looping through all rows and adding to list
+		if (cursor.moveToFirst()) {
+			do {
+				labels.add(cursor.getString(1));
+			}
+			while (cursor.moveToNext());
+		}
+		// closing connection
+		cursor.close();
+		//db.close();
+		// returning lables 
+		return labels;
+	}
+	
 	
 			//Read individual column data
 	

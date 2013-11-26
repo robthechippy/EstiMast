@@ -8,41 +8,27 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 
-class ItemHelper extends SQLiteOpenHelper {
-	private static final String DATABASE_NAME="estimast.db";
-	private static final int SCHEMA_VERSION=1;
+class ItemHelper {
 	private Calendar dateAndTime=Calendar.getInstance();
 	private DateFormat fmtDateAndTime=DateFormat.getDateInstance();
+	private dbMaster db=null;
 
 	public ItemHelper(Context context) {
-		super(context, DATABASE_NAME, null, SCHEMA_VERSION);
-
-	}
-
-	@Override
-	public void onCreate(SQLiteDatabase db) {
-		db.execSQL("CREATE TABLE items (_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, catagory INTEGER, code TEXT, description TEXT, unit INTEGER, unitQty FLOAT, unitCost FLOAT, markup FLOAT, taxable INTEGER, taxtype INTEGER, itemType INTEGER, itemLen FLOAT, itemLenFrac FLOAT, itemWidth FLOAT, itemWidthFrac FLOAT, itemHeight FLOAT, itemHeightFrac FLOAT, availableSizes TEXT, supplier INTEGER, dateChecked TEXT, stockOnHand INTEGER, stockOnOrder INTEGER, barcode TEXT, location TEXT, photo TEXT);");
 		
+		db = new dbMaster(context);
+
 	}
-
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// no-op, since will not be called until 2nd schema
-		// version exists
-	}
-
-
 
 
 	//Used to load current catagory items into the list
 	public Cursor getCurrentCat(String[] cat) {
-		return(getReadableDatabase().rawQuery("SELECT * FROM items WHERE catagory=?",
+		return(db.getReadableDatabase().rawQuery("SELECT * FROM items WHERE catagory=?",
 											  cat));
 	}
 
 	//Used to load all the items into the list
 	public Cursor getAllItems() {
-		return(getReadableDatabase()
+		return(db.getReadableDatabase()
             .rawQuery("SELECT * FROM items",
                       null));
 	}
@@ -59,7 +45,7 @@ class ItemHelper extends SQLiteOpenHelper {
 		cv.put("dateChecked", fmtDateAndTime.format(dateAndTime.getTime()));
 		
 
-		ID=getWritableDatabase().insert("items", "description", cv);
+		ID=db.getWritableDatabase().insert("items", "description", cv);
 		//ID=ID-1;
 		return(ID.intValue());
 	}
@@ -97,12 +83,12 @@ class ItemHelper extends SQLiteOpenHelper {
 		cv.put("location", location);
 		cv.put("photo", photo);
 
-		getWritableDatabase().update("items", cv, "_id=?", id);
+		db.getWritableDatabase().update("items", cv, "_id=?", id);
 	}
 
 	public void deleteItem(String[] id) {
 		//This will delete the job.
-		getWritableDatabase().delete("items", "_id=?", id);
+		db.getWritableDatabase().delete("items", "_id=?", id);
 
 		
 	}

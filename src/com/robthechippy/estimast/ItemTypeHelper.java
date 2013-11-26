@@ -1,53 +1,23 @@
 package com.robthechippy.estimast;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteDatabase;
 
-class ItemTypeHelper extends SQLiteOpenHelper {
-	private static final String DATABASE_NAME="estimast.db";
-	private static final int SCHEMA_VERSION=1;
+class ItemTypeHelper{
 
+	private dbMaster db=null;
 
 	public ItemTypeHelper(Context context) {
-		super(context, DATABASE_NAME, null, SCHEMA_VERSION);
+		
+		db = new dbMaster(context);
 
 	}
 
-	@Override
-	public void onCreate(SQLiteDatabase db) {
-		ContentValues cv=new ContentValues();
-
-		db.execSQL("CREATE TABLE itemtype (_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, title TEXT, type INTEGER);");
-
-		cv.put("title", "Non inventory");
-		cv.put("type", 0);
-		db.insert("itemtype", "title", cv);
-		
-		cv.put("title", "Inventory");
-		cv.put("type", 1);
-		db.insert("itemtype", "title", cv);
-		
-		cv.put("title", "Service");
-		cv.put("type", 2);
-		db.insert("itemtype", "title", cv);
-		
-		cv.put("title", "Shipping");
-		cv.put("type", 3);
-		db.insert("itemtype", "title", cv);
-	}
-
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// no-op, since will not be called until 2nd schema
-		// version exists
-	}
-
-
-
+	
 	/* Used to load current jobs into the list
 	 public Cursor getCurrent() {
 	 return(getReadableDatabase().rawQuery("SELECT * FROM jobs WHERE status<6 ORDER BY status",
@@ -56,7 +26,7 @@ class ItemTypeHelper extends SQLiteOpenHelper {
 
 	//Used to load all the catagories into the list
 	public Cursor getAll() {
-		return(getReadableDatabase()
+		return(db.getReadableDatabase()
             .rawQuery("SELECT * FROM itemtype",
                       null));
 	}
@@ -69,7 +39,7 @@ class ItemTypeHelper extends SQLiteOpenHelper {
 		cv.put("title", title);
 		cv.put("type", type);
 
-		ID=getWritableDatabase().insert("itemtype", "title", cv);
+		ID=db.getWritableDatabase().insert("itemtype", "title", cv);
 		//ID=ID-1;
 		return(ID.intValue());
 	}
@@ -81,15 +51,44 @@ class ItemTypeHelper extends SQLiteOpenHelper {
 		cv.put("title", name);
 		cv.put("type", type);
 
-		getWritableDatabase().update("itemtype", cv, "_id=?", id);
+		db.getWritableDatabase().update("itemtype", cv, "_id=?", id);
 	}
 
 	public void delete(String[] id) {
 		//This will delete the catagory.
-		getWritableDatabase().delete("itemtype", "_id=?", id);
+		db.getWritableDatabase().delete("itemtype", "_id=?", id);
 
 
 	}
+	
+	/**
+	 * Getting all labels
+	 * returns list of labels
+	 *
+	 */
+
+	public List<String> getAllLabels(){
+
+		//public void getAllLabels(){
+		List<String> labels = new ArrayList<String>();
+		// Select All Query
+		Cursor cursor = db.getReadableDatabase().rawQuery("SELECT * FROM itemtype", null);
+		//SQLiteDatabase db = this.getReadableDatabase();
+		//Cursor cursor = db.rawQuery("SELECT * FROM catagories", null);
+		// looping through all rows and adding to list
+		if (cursor.moveToFirst()) {
+			do {
+				labels.add(cursor.getString(1));
+			}
+			while (cursor.moveToNext());
+		}
+		// closing connection
+		cursor.close();
+		//db.close();
+		// returning lables 
+		return labels;
+	}
+	
 
 	//Read individual column data
 
