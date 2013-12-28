@@ -60,7 +60,7 @@ public class dbMaster extends SQLiteOpenHelper {
 		
 		cv.put("title", "Service");
 		db.insert("catagories", null, cv);
-
+		cv.clear();
 		
 		/* Tax table */
 		db.execSQL("CREATE TABLE tax (_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, title TEXT, percent FLOAT);");
@@ -72,6 +72,7 @@ public class dbMaster extends SQLiteOpenHelper {
 		cv.put("title", "GST");
 		cv.put("percent", 10.0);
 		db.insert("tax", null, cv);
+		cv.clear();
 		
 		/* unit types table */
 		db.execSQL("CREATE TABLE unit (_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, title TEXT, hasparts INTEGER);");
@@ -99,6 +100,7 @@ public class dbMaster extends SQLiteOpenHelper {
 		cv.put("title", "Kg");
 		cv.put("hasparts", 1);
 		db.insert("unit", null, cv);
+		cv.clear();
 		
 		/* itemtype table */
 		db.execSQL("CREATE TABLE itemtype (_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, title TEXT, type INTEGER);");
