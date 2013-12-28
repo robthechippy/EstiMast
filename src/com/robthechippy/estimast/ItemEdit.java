@@ -1,19 +1,17 @@
 package com.robthechippy.estimast;
 
 import java.util.List;
-
-import android.app.Activity;
+import android.app.*;
 import android.os.Bundle;
 import android.database.Cursor;
 import android.view.*;
-import android.widget.Spinner;
-import android.widget.Adapter;
 import android.widget.*;
-
+import android.text.*;
 
 public class ItemEdit extends Activity
 {
 
+	//Define the spinners.
 	Spinner spnCat = null;
 	CatagoryHelper catHelper = null;
 	
@@ -39,7 +37,9 @@ public class ItemEdit extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_item);
 	
-		catHelper=new CatagoryHelper(this);
+		/******* Start setting up the spinners. *******/
+        
+        catHelper=new CatagoryHelper(this);
 		spnCat=(Spinner)findViewById(R.id.spn_catagory);
 		
 		taxHelper = new TaxHelper(this);
@@ -53,7 +53,8 @@ public class ItemEdit extends Activity
 		
 		itemHelper = new ItemHelper(this);
 		
-		/* Setup tabs */
+		/******* Setup tabs *******/
+		
 		TabHost tabs=(TabHost)findViewById(R.id.tabhost);
 		
 		tabs.setup();
@@ -82,12 +83,41 @@ public class ItemEdit extends Activity
 		spec.setIndicator("Stock");
 		tabs.addTab(spec);
 		
-		//loadPage();
+		/******* Define some text change handlers. *******/
+		
+		TextWatcher costChanged=new TextWatcher(){
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		};
+		
+		EditText cost=(EditText)findViewById(R.id.txt_cost_unit);
+		cost.addTextChangedListener(costChanged);
+		
+		loadPage();
 		
 		
-    //}
+    }
 	
-	//public void loadPage() {
+	public void loadPage() {
 		
 		/* Setup catagory spinner */
 		loadSpnCatData();
@@ -105,6 +135,7 @@ public class ItemEdit extends Activity
 	
 	private void loadSpnCatData() {
 		
+		/******* Load the Category spinner with data. *******/
 		// Spinner Drop down elements
 		List<String> lables = catHelper.getAllLabels();
 		// Creating adapter for spinner
@@ -118,6 +149,7 @@ public class ItemEdit extends Activity
 	
 	private void loadSpnTaxData() {
 		
+		/******* Load the different tax options. *******/
 		// Spinner Drop down elements
 		List<String> lables = taxHelper.getAllLabels();
 		// Creating adapter for spinner
@@ -131,6 +163,7 @@ public class ItemEdit extends Activity
 	
 	private void loadSpnUnitData() {
 
+		/******* Load in the different unit options. *******/
 		// Spinner Drop down elements
 		List<String> lables = unitHelper.getAllLabels();
 		// Creating adapter for spinner
@@ -144,6 +177,7 @@ public class ItemEdit extends Activity
 	
 	private void loadSpnTypeData() {
 
+		/******* Load in the type of item options. *******/
 		// Spinner Drop down elements
 		List<String> lables = typeHelper.getAllLabels();
 		// Creating adapter for spinner

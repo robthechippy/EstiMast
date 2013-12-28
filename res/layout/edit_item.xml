@@ -118,13 +118,7 @@
 
 					</TableRow>
 
-					<TableLayout
-						android:layout_height="match_parent"
-						android:layout_width="match_parent"
-						android:stretchColumns="1"
-						android:shrinkColumns="1">
-
-						<TableRow
+					<TableRow
 							android:layout_height="wrap_content"
 							android:layout_width="wrap_content">
 
@@ -135,6 +129,7 @@
 								android:layout_width="wrap_content"
 								android:layout_gravity="right|center_vertical"/>
 
+							<LinearLayout >
 							<Spinner
 								android:layout_height="wrap_content"
 								android:layout_width="wrap_content"
@@ -155,11 +150,11 @@
 								android:layout_width="wrap_content"
 								android:hint="Pkt Qty"
 								android:textSize="16sp"/>
+							</LinearLayout>
 
-						</TableRow>
+					</TableRow>
 
-					</TableLayout>
-
+					
 					<TableRow
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content">
