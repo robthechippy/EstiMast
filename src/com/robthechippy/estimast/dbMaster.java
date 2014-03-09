@@ -26,7 +26,7 @@ public class dbMaster extends SQLiteOpenHelper {
 
 		/* Mainitems table */
 		db.execSQL("CREATE TABLE items (_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, catagory INTEGER, code TEXT, description TEXT, unit INTEGER, unitQty FLOAT, unitCost FLOAT, markup FLOAT, taxable INTEGER, taxtype INTEGER, itemType INTEGER, itemLen FLOAT, itemLenFrac FLOAT, itemWidth FLOAT, itemWidthFrac FLOAT, itemHeight FLOAT, itemHeightFrac FLOAT, availableSizes TEXT, supplier INTEGER, dateChecked TEXT, stockOnHand INTEGER, stockOnOrder INTEGER, barcode TEXT, location TEXT, photo Text)");
-		/*cv.put("catagory", 1);
+		cv.put("catagory", 1);
 		cv.put("code", "Test1");
 		cv.put("description", "This is just an item for testing");
 		cv.put("unit", 1);
@@ -50,7 +50,34 @@ public class dbMaster extends SQLiteOpenHelper {
 		cv.put("barcode", "");
 		cv.put("location", "A14");
 		cv.put("photo", "");
-		db.insert("items", null, cv);*/
+		db.insert("items", null, cv);
+		
+		cv.put("catagory", 2);
+		cv.put("code", "Sevice");
+		cv.put("description", "This is just an service item for testing");
+		cv.put("unit", 1);
+		cv.put("unitQty", 1);
+		cv.put("unitCost", 23.45);
+		cv.put("markup", 10);
+		cv.put("taxable", 1);
+		cv.put("taxtype", 1);
+		cv.put("itemType", 2);
+		cv.put("itemLen", 1.0);
+		cv.put("itemLenFrac", 0.3);
+		cv.put("itemWidth", 2.0);
+		cv.put("itemWidthFrac",0.25);
+		cv.put("itemHeight", 0.3);
+		cv.put("itemHeightFrac", 1);
+		cv.put("availableSizes", "");
+		cv.put("supplier", 1);
+		cv.put("dateChecked", "27/12/2013");
+		cv.put("stockOnHand", 0);
+		cv.put("stockOnOrder", 0);
+		cv.put("barcode", "");
+		cv.put("location", "");
+		cv.put("photo", "");
+		db.insert("items", null, cv);
+		cv.clear();
 		
 		/* Catagory table */
 		db.execSQL("CREATE TABLE catagories (_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, title TEXT);");

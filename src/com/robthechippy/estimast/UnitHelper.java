@@ -54,6 +54,19 @@ class UnitHelper {
 	
 	}
 	
+	// Used to load current unit hasparts
+	public Boolean getCurrent(String unit) {
+
+		String[] sel=new String[1];
+		sel[0]= unit;
+		Cursor c=db.getReadableDatabase().rawQuery("SELECT * FROM unit WHERE title=?",
+												   sel);
+		c.moveToFirst();
+		return(getHasparts(c));
+	} 
+
+	
+	
 	/**
 	 * Getting all labels
 	 * returns list of labels

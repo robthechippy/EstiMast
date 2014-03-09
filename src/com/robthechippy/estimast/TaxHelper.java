@@ -24,11 +24,16 @@ class TaxHelper {
 	}
 
 
-	/* Used to load current jobs into the list
-	 public Cursor getCurrent() {
-	 return(getReadableDatabase().rawQuery("SELECT * FROM jobs WHERE status<6 ORDER BY status",
-	 null));
-	 } */
+	// Used to load current tax percent
+	 public String getCurrent(String taxtype) {
+	 
+		 String[] sel=new String[1];
+		 sel[0]= taxtype;
+		 Cursor c=db.getReadableDatabase().rawQuery("SELECT * FROM tax WHERE title=?",
+	 	sel);
+		c.moveToFirst();
+		return(Float.toString( getpercent(c)));
+	 } 
 
 	//Used to load all the catagories into the list
 	public Cursor getAll() {
@@ -112,7 +117,7 @@ class TaxHelper {
 
 	}
 	
-	public Float getapercent(Cursor c) {
+	public Float getpercent(Cursor c) {
 		return(c.getFloat(2));
 	}
 

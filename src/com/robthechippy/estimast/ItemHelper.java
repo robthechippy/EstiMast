@@ -33,7 +33,7 @@ class ItemHelper {
                       null));
 	}
 
-	//Adds a new item
+	//Adds a new blank item
 	public int insertItem(String code) {
 		ContentValues cv=new ContentValues();
 		Long ID;
