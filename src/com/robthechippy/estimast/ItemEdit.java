@@ -87,6 +87,7 @@ public class ItemEdit extends Activity
 		
 		/******* Define some text change handlers. *******/
 		
+		/* Start of cost changed. */
 		TextWatcher costChanged=new TextWatcher(){
 
 			@Override
@@ -146,11 +147,13 @@ public class ItemEdit extends Activity
 				
 			}
 			
-		};
+		};		/* End of cost changed. */
 		
+		// Set costchanged to the text box.
 		EditText cost=(EditText)findViewById(R.id.txt_cost_unit);
 		cost.addTextChangedListener(costChanged);
 		
+		/* Start of markup changed. */
 		TextWatcher markupChanged=new TextWatcher(){
 
 			@Override
@@ -211,12 +214,13 @@ public class ItemEdit extends Activity
 				
 			}
 			
-		};
+		};	/* End of markup changed. */
 		
+		// Set markupchanged to the text box.
 		EditText markup=(EditText)findViewById(R.id.txt_markup);
 		markup.addTextChangedListener(markupChanged);
 		
-		
+		//Now load the actual data into the page.
 		loadPage();
 		
 		
@@ -229,7 +233,7 @@ public class ItemEdit extends Activity
 		float markupPercent;
 		float taxpercent;
 		EditText unitcostamount=(EditText)findViewById(R.id.txt_cost_unit);
-		EditText taxamount=(EditText)findViewById(R.id.txt_item_tax_amount);
+		//EditText taxamount=(EditText)findViewById(R.id.txt_item_tax_amount);
 		//EditText saleprice=(EditText)findViewById(R.id.txt_sale_price);
 		//EditText profit=(EditText)findViewById(R.id.txt_markup_profits);
 		EditText taxitempercent=(EditText)findViewById(R.id.txt_tax_percent);
@@ -240,8 +244,8 @@ public class ItemEdit extends Activity
 			tmp.setVisibility(View.VISIBLE);
 			tmp= (TextView)findViewById(R.id.lbl_tax_percent);
 			tmp.setVisibility(View.VISIBLE);
-			tmp= (TextView)findViewById(R.id.txt_tax_percent);
-			tmp.setVisibility(View.VISIBLE);
+			//tmp= (EditView)findViewById(R.id.txt_tax_percent);
+			taxitempercent.setVisibility(View.VISIBLE);
 			Spinner spn= (Spinner)findViewById(R.id.spn_item_taxType);
 			spn.setVisibility(View.VISIBLE);
 			taxpercent=Float.parseFloat(taxitempercent.getText().toString());
@@ -251,8 +255,8 @@ public class ItemEdit extends Activity
 			tmp.setVisibility(View.INVISIBLE);
 			tmp= (TextView)findViewById(R.id.lbl_tax_percent);
 			tmp.setVisibility(View.INVISIBLE);
-			tmp= (TextView)findViewById(R.id.txt_tax_percent);
-			tmp.setVisibility(View.INVISIBLE);
+			//taxitempercent= (EditView)findViewById(R.id.txt_tax_percent);
+			taxitempercent.setVisibility(View.INVISIBLE);
 			Spinner spn= (Spinner)findViewById(R.id.spn_item_taxType);
 			spn.setVisibility(View.INVISIBLE);
 			taxpercent=0;
@@ -317,6 +321,15 @@ public class ItemEdit extends Activity
 	
 	public void loadPage() {
 		
+		//For testing only
+		Cursor itemList=null;
+		Cursor item=null;
+		itemList=itemHelper.getAllItems();
+		itemList.moveToFirst();
+		String id=itemHelper.getID(itemList);
+		item=itemHelper.getCurrentItem(id);
+		item.moveToFirst();
+		
 		/* Setup catagory spinner */
 		loadSpnCatData();
 
@@ -328,6 +341,18 @@ public class ItemEdit extends Activity
 		
 		/* Setup item type spinner */
 		loadSpnTypeData();
+		
+		//Now load the actual data into the fields Starting with text boxes.
+		EditText tmpTxt=(EditText)findViewById(R.id.txt_item_code);
+		tmpTxt.setText(itemHelper.getCode(item));
+		tmpTxt=(EditText)findViewById(R.id.txt_item_desc);
+		tmpTxt.setText(itemHelper.getDescription(item));
+		tmpTxt=(EditText)findViewById(R.id.txt_item_checked_date);
+		tmpTxt.setText(itemHelper.getItemDateChecked(item));
+		tmpTxt=(EditText)findViewById(R.id.txt_item_stock_barcode);
+		tmpTxt.setText(itemHelper.getItemBarcode(item));
+		tmpTxt=(EditText)findViewById(R.id.txt_item_stock_location);
+		tmpTxt.setText(itemHelper.getItemLocation(item));
 		
 	}
 	
@@ -419,6 +444,29 @@ public class ItemEdit extends Activity
 			// If the unit hasparts then show pkt text box.
 			TextView pktQtyLbl=(TextView)findViewById(R.id.lbl_pkt_qty);
 			EditText pktQtyTxt=(EditText)findViewById(R.id.txt_pkt_qty);
+			TextView lblSubCost=(TextView)findViewById(R.id.lbl_item_subCost);
+			EditText txtSubCost=(EditText)findViewById(R.id.txt_item_subCost);
+			CheckBox chkUseSub=(CheckBox)findViewById(R.id.chk_item_useSub);
+			
+			//Find item selected using
+			String unit=( parent.getItemAtPosition(pos).toString());
+			Boolean hasParts = unitHelper.getCurrentHasParts(unit);
+			
+			//Now use this info to show or hide fields.
+			if (hasParts) {
+				pktQtyLbl.setVisibility(view.VISIBLE);
+				pktQtyTxt.setVisibility(view.VISIBLE);
+				lblSubCost.setVisibility(view.VISIBLE);
+				txtSubCost.setVisibility(view.VISIBLE);
+				chkUseSub.setVisibility(view.VISIBLE);
+			}
+			else {
+				pktQtyLbl.setVisibility(view.INVISIBLE);
+				pktQtyTxt.setVisibility(view.INVISIBLE);
+				lblSubCost.setVisibility(view.INVISIBLE);
+				txtSubCost.setVisibility(view.INVISIBLE);
+				chkUseSub.setVisibility(view.INVISIBLE);
+			}
 			
 		}
 
@@ -427,7 +475,7 @@ public class ItemEdit extends Activity
 		}
 	};
 	
-	
+	/* Load the item unit spinner with its data. */
 	private void loadSpnUnitData() {
 
 		/******* Load in the different unit options. *******/
@@ -442,6 +490,7 @@ public class ItemEdit extends Activity
 
 	}
 	
+	/* Load the item type spinner with data. */
 	private void loadSpnTypeData() {
 
 		/******* Load in the type of item options. *******/

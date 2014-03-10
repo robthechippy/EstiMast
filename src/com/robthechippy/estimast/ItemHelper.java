@@ -18,8 +18,20 @@ class ItemHelper {
 		db = new dbMaster(context);
 
 	}
+	
+	//Get all of the items in the cataloge
+	public Cursor getAllItems() {
+		return(db.getReadableDatabase()
+				.rawQuery("SELECT _id, catagory, code, description FROM items", null));
+	}
 
-
+	//Get a single item by id.
+	public Cursor getCurrentItem(String _id) {
+		//convert _id to string array
+		String[] id={_id};
+		return(db.getReadableDatabase().rawQuery("SELECT * FROM items WHERE _id=?", id));
+	}
+	
 	//Used to load current catagory items into the list
 	public Cursor getCurrentCat(String[] cat) {
 		return(db.getReadableDatabase().rawQuery("SELECT * FROM items WHERE catagory=?",
@@ -27,11 +39,11 @@ class ItemHelper {
 	}
 
 	//Used to load all the items into the list
-	public Cursor getAllItems() {
+	/*public Cursor getAllItems() {
 		return(db.getReadableDatabase()
             .rawQuery("SELECT * FROM items",
                       null));
-	}
+	}*/
 
 	//Adds a new blank item
 	public int insertItem(String code) {
@@ -95,10 +107,10 @@ class ItemHelper {
 
 	//Read individual column data
 
-	public String[] getID(Cursor c) {
-		String id[]=new String[1];
-		id[0]=Integer.toString(c.getInt(0));
-		return(id);
+	public String getID(Cursor c) {
+		//String id[]=new String[1];
+		//id[0]=Integer.toString(c.getInt(0));
+		return(Integer.toString(c.getInt(0)));
 	}
 
 	public int getIDint(Cursor c) {
@@ -106,91 +118,91 @@ class ItemHelper {
 	}
 
 	public String getCode(Cursor c) {
-		return(c.getString(1));
+		return(c.getString(2));
 
 	}
 
 	public String getDescription(Cursor c) {
-		return(c.getString(2));
+		return(c.getString(3));
 	}
 
 	public int getUnit(Cursor c) {
-		return(c.getInt(3));
+		return(c.getInt(4));
 	}
 
 	public float getUnitCost(Cursor c) {
-		return(c.getFloat(4));
+		return(c.getFloat(6));
 	}
 
 	public float getMarkup(Cursor c) {
-		return(c.getFloat(5));
+		return(c.getFloat(7));
 	}
 
 	public int getTaxable(Cursor c) {
-		return(c.getInt(6));
+		return(c.getInt(8));
 	}
 
 	public int getTaxtype(Cursor c) {
-		return(c.getInt(7));
+		return(c.getInt(9));
 	}
 
 	public int getItemType(Cursor c) {
-		return(c.getInt(8));
+		return(c.getInt(10));
 	}
 	
 	public float getItemLen(Cursor c) {
-		return(c.getFloat(9));
-	}
-	
-	public float getItemLenFrac(Cursor c) {
-		return(c.getFloat(10));
-	}
-	
-	public float getItemWidth(Cursor c) {
 		return(c.getFloat(11));
 	}
 	
-	public float getItemWidthFrac(Cursor c) {
+	public float getItemLenFrac(Cursor c) {
 		return(c.getFloat(12));
 	}
-	public float getItemHeight(Cursor c) {
+	
+	public float getItemWidth(Cursor c) {
 		return(c.getFloat(13));
 	}
 	
-	public float getItemHeightFrac(Cursor c) {
+	public float getItemWidthFrac(Cursor c) {
 		return(c.getFloat(14));
+	}
+	public float getItemHeight(Cursor c) {
+		return(c.getFloat(15));
+	}
+	
+	public float getItemHeightFrac(Cursor c) {
+		return(c.getFloat(16));
 	}
 	
 	public String getItemAvailableSizes(Cursor c) {
-		return(c.getString(15));
-	}
-	
-	public int getItemSupplier(Cursor c) {
-		return(c.getInt(16));
-	}
-	
-	public String getItemDateChecked(Cursor c) {
 		return(c.getString(17));
 	}
 	
-	public int getItemStockOnHand(Cursor c) {
+	public int getItemSupplier(Cursor c) {
 		return(c.getInt(18));
 	}
 	
+	public String getItemDateChecked(Cursor c) {
+		return(c.getString(19));
+	}
+	
+	public int getItemStockOnHand(Cursor c) {
+		return(c.getInt(20));
+	}
+	
 	public int getItemStockOnOrder(Cursor c) {
-		return(c.getInt(19));
+		return(c.getInt(21));
 	}
 	
 	public String getItemBarcode(Cursor c) {
-		return(c.getString(20));
+		return(c.getString(22));
 	}
 	
 	public String getItemLocation(Cursor c) {
-		return(c.getString(21));
+		return(c.getString(23));
 	}
 	
 	public String getItemPhoto(Cursor c) {
-		return(c.getString(22));
+		return(c.getString(24));
 	}
 
 	

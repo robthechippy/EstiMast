@@ -55,7 +55,7 @@ class UnitHelper {
 	}
 	
 	// Used to load current unit hasparts
-	public Boolean getCurrent(String unit) {
+	public Boolean getCurrentHasParts(String unit) {
 
 		String[] sel=new String[1];
 		sel[0]= unit;
