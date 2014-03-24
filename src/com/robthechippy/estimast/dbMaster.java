@@ -25,23 +25,23 @@ public class dbMaster extends SQLiteOpenHelper {
 		ContentValues cv=new ContentValues();
 
 		/* Mainitems table */
-		db.execSQL("CREATE TABLE items (_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, catagory INTEGER, code TEXT, description TEXT, unit INTEGER, unitQty FLOAT, unitCost FLOAT, markup FLOAT, taxable INTEGER, taxtype INTEGER, itemType INTEGER, itemLen FLOAT, itemLenFrac FLOAT, itemWidth FLOAT, itemWidthFrac FLOAT, itemHeight FLOAT, itemHeightFrac FLOAT, availableSizes TEXT, supplier INTEGER, dateChecked TEXT, stockOnHand INTEGER, stockOnOrder INTEGER, barcode TEXT, location TEXT, photo Text)");
-		cv.put("catagory", 1);
+		db.execSQL("CREATE TABLE items (_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, catagory TEXT, code TEXT, description TEXT, unit TEXT, unitQty FLOAT, unitCost FLOAT, markup FLOAT, taxable INTEGER, taxtype TEXT, itemType TEXT, itemLen FLOAT, itemLenFrac FLOAT, itemWidth FLOAT, itemWidthFrac FLOAT, itemHeight FLOAT, itemHeightFrac FLOAT, availableSizes TEXT, supplier INTEGER, dateChecked TEXT, stockOnHand INTEGER, stockOnOrder INTEGER, barcode TEXT, location TEXT, photo Text)");
+		cv.put("catagory", "Misc");
 		cv.put("code", "Test1");
 		cv.put("description", "This is just an item for testing");
-		cv.put("unit", 1);
+		cv.put("unit", "each");
 		cv.put("unitQty", 1);
 		cv.put("unitCost", 23.45);
 		cv.put("markup", 10);
 		cv.put("taxable", 1);
-		cv.put("taxtype", 1);
-		cv.put("itemType", 1);
+		cv.put("taxtype", "GST");
+		cv.put("itemType", "Non inventory");
 		cv.put("itemLen", 1.0);
 		cv.put("itemLenFrac", 0.3);
 		cv.put("itemWidth", 2.0);
 		cv.put("itemWidthFrac",0.25);
 		cv.put("itemHeight", 0.3);
-		cv.put("itemHeightFrac", 1);
+		cv.put("itemHeightFrac", 0.6);
 		cv.put("availableSizes", "");
 		cv.put("supplier", 1);
 		cv.put("dateChecked", "27/12/2013");
@@ -52,15 +52,15 @@ public class dbMaster extends SQLiteOpenHelper {
 		cv.put("photo", "");
 		db.insert("items", null, cv);
 		
-		cv.put("catagory", 2);
+		cv.put("catagory", "Service");
 		cv.put("code", "Sevice");
 		cv.put("description", "This is just an service item for testing");
-		cv.put("unit", 1);
+		cv.put("unit", "lm");
 		cv.put("unitQty", 1);
 		cv.put("unitCost", 23.45);
 		cv.put("markup", 10);
-		cv.put("taxable", 1);
-		cv.put("taxtype", 1);
+		cv.put("taxable", 0);
+		cv.put("taxtype", "None");
 		cv.put("itemType", 2);
 		cv.put("itemLen", 1.0);
 		cv.put("itemLenFrac", 0.3);

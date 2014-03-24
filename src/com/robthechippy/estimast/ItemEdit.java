@@ -318,7 +318,7 @@ public class ItemEdit extends Activity
 		
 	}
 	
-	
+	//public void loadPage(Cursor item) {
 	public void loadPage() {
 		
 		//For testing only
@@ -329,6 +329,7 @@ public class ItemEdit extends Activity
 		String id=itemHelper.getID(itemList);
 		item=itemHelper.getCurrentItem(id);
 		item.moveToFirst();
+		//end of testing code
 		
 		/* Setup catagory spinner */
 		loadSpnCatData();
@@ -354,7 +355,187 @@ public class ItemEdit extends Activity
 		tmpTxt=(EditText)findViewById(R.id.txt_item_stock_location);
 		tmpTxt.setText(itemHelper.getItemLocation(item));
 		
+		//Now some floating values
+		tmpTxt=(EditText)findViewById(R.id.txt_cost_unit);
+		tmpTxt.setText(Float.toString( itemHelper.getUnitCost(item)));
+		tmpTxt=(EditText)findViewById(R.id.txt_markup);
+		tmpTxt.setText(Float.toString( itemHelper.getMarkup(item)));
+		tmpTxt=(EditText)findViewById(R.id.txt_cost_unit);
+		tmpTxt.setText(Float.toString( itemHelper.getUnitCost(item)));
+		tmpTxt=(EditText)findViewById(R.id.txt_item_len);
+		tmpTxt.setText(Float.toString( itemHelper.getItemLen(item)));
+		tmpTxt=(EditText)findViewById(R.id.txt_item_width);
+		tmpTxt.setText(Float.toString( itemHelper.getItemWidth(item)));
+		tmpTxt=(EditText)findViewById(R.id.txt_item_hgt);
+		tmpTxt.setText(Float.toString( itemHelper.getItemHeight(item)));
+		tmpTxt=(EditText)findViewById(R.id.txt_item_stock_onhand);
+		tmpTxt.setText(Float.toString( itemHelper.getItemStockOnHand(item)));
+		tmpTxt=(EditText)findViewById(R.id.txt_item_stock_onorder);
+		tmpTxt.setText(Float.toString( itemHelper.getItemStockOnOrder(item)));
+		
+		//Now the rest of the data that needs some thought.
+		//First up is the item catagory
+		spnCat.setSelection(getIndex(spnCat, itemHelper.getCatagory(item)));
+		spnTax.setSelection(getIndex(spnTax, itemHelper.getTaxtype(item)));
+		spnUnit.setSelection(getIndex(spnUnit, itemHelper.getUnit(item)));
+		spnType.setSelection(getIndex(spnType, itemHelper.getItemType(item)));
+		
+		//Tax check box
+		int taxable=itemHelper.getTaxable(item);
+		CheckBox tmpChk=(CheckBox)findViewById(R.id.chk_taxable);
+		if (taxable > 0) {
+			tmpChk.setChecked(true);
+		} else tmpChk.setChecked(false);
+		
+		//Now all the fraction radio buttons
+		RadioButton tmpRad=null;
+		String frac = Float.toString(itemHelper.getItemLenFrac(item));
+		Boolean changed = false;
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_len_1);
+		if(frac.matches("1.0")) {
+			tmpRad.setChecked(true);
+			changed = true;
+		}
+		else {
+			tmpRad.setChecked(false);
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_len_25);
+		if(frac.matches("0.25")) {
+			tmpRad.setChecked(true);
+			changed = true;
+		}
+		else {
+			tmpRad.setChecked(false);
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_len_3);
+		if (frac.matches("0.3")) {
+			tmpRad.setChecked(true);
+			changed = true;
+		}
+		else {
+			tmpRad.setChecked(false);
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_len_5);
+		if(frac.matches("0.5")) {
+			tmpRad.setChecked(true);
+			changed = true;
+		}
+		else {
+			tmpRad.setChecked(false);
+		}
+		if (changed) {
+			tmpTxt=(EditText)findViewById(R.id.txt_item_frac_len_other);
+			tmpTxt.setText("");
+		}
+		else {
+			tmpTxt=(EditText)findViewById(R.id.txt_item_frac_len_other);
+			tmpTxt.setText(frac);
+		}
+		
+		//Width group
+		frac = Float.toString(itemHelper.getItemWidthFrac(item));
+		changed = false;
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_width_1);
+		if(frac.matches("1.0")) {
+			tmpRad.setChecked(true);
+			changed = true;
+		}
+		else {
+			tmpRad.setChecked(false);
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_width_25);
+		if(frac.matches("0.25")) {
+			tmpRad.setChecked(true);
+			changed = true;
+		}
+		else {
+			tmpRad.setChecked(false);
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_width_3);
+		if (frac.matches("0.3")) {
+			tmpRad.setChecked(true);
+			changed = true;
+		}
+		else {
+			tmpRad.setChecked(false);
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_width_5);
+		if(frac.matches("0.5")) {
+			tmpRad.setChecked(true);
+			changed = true;
+		}
+		else {
+			tmpRad.setChecked(false);
+		}
+		if (changed) {
+			tmpTxt=(EditText)findViewById(R.id.txt_item_frac_width_other);
+			tmpTxt.setText("");
+		}
+		else {
+			tmpTxt=(EditText)findViewById(R.id.txt_item_frac_width_other);
+			tmpTxt.setText(frac);
+		}
+		
+		//Height group
+		frac = Float.toString(itemHelper.getItemHeightFrac(item));
+		changed = false;
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_hgt_1);
+		if(frac.matches("1.0")) {
+			tmpRad.setChecked(true);
+			changed = true;
+		}
+		else {
+			tmpRad.setChecked(false);
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_hgt_25);
+		if(frac.matches("0.25")) {
+			tmpRad.setChecked(true);
+			changed = true;
+		}
+		else {
+			tmpRad.setChecked(false);
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_hgt_3);
+		if (frac.matches("0.3")) {
+			tmpRad.setChecked(true);
+			changed = true;
+		}
+		else {
+			tmpRad.setChecked(false);
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_hgt_5);
+		if(frac.matches("0.5")) {
+			tmpRad.setChecked(true);
+			changed = true;
+		}
+		else {
+			tmpRad.setChecked(false);
+		}
+		if (changed) {
+			tmpTxt=(EditText)findViewById(R.id.txt_item_frac_hgt_other);
+			tmpTxt.setText("");
+		}
+		else {
+			tmpTxt=(EditText)findViewById(R.id.txt_item_frac_hgt_other);
+			tmpTxt.setText(frac);
+		}
+		
+		
 	}
+	
+		
+	private int getIndex(Spinner spinner, String myString){
+		 
+		  int index = 0;
+		 
+		  for (int i=0;i<spinner.getCount();i++){
+		   if (spinner.getItemAtPosition(i).equals(myString)){
+		    index = i;
+		   }
+		  }
+		  return index;
+		 }
+
 	
 	private void loadSpnCatData() {
 		

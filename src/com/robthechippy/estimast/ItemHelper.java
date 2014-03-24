@@ -5,8 +5,8 @@ import java.text.DateFormat;
 import android.content.Context;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteDatabase;
+//import android.database.sqlite.SQLiteOpenHelper;
+//import android.database.sqlite.SQLiteDatabase;
 
 class ItemHelper {
 	private Calendar dateAndTime=Calendar.getInstance();
@@ -117,6 +117,10 @@ class ItemHelper {
 		return(c.getInt(0));
 	}
 
+	public String getCatagory(Cursor c) {
+		return(c.getString(1));
+	}
+	
 	public String getCode(Cursor c) {
 		return(c.getString(2));
 
@@ -126,8 +130,8 @@ class ItemHelper {
 		return(c.getString(3));
 	}
 
-	public int getUnit(Cursor c) {
-		return(c.getInt(4));
+	public String getUnit(Cursor c) {
+		return(c.getString(4));
 	}
 
 	public float getUnitCost(Cursor c) {
@@ -142,12 +146,12 @@ class ItemHelper {
 		return(c.getInt(8));
 	}
 
-	public int getTaxtype(Cursor c) {
-		return(c.getInt(9));
+	public String getTaxtype(Cursor c) {
+		return(c.getString(9));
 	}
 
-	public int getItemType(Cursor c) {
-		return(c.getInt(10));
+	public String getItemType(Cursor c) {
+		return(c.getString(10));
 	}
 	
 	public float getItemLen(Cursor c) {

@@ -173,12 +173,12 @@
 						<LinearLayout>
 
 							<EditText
-								android:layout_height="wrap_content"
-								android:inputType="number"
-								android:layout_width="wrap_content"
-								android:hint="Sub Cost"
-								android:textSize="16sp"
-								android:id="@+id/txt_item_subCost"/>
+							    android:id="@+id/txt_item_subCost"
+							    android:layout_width="wrap_content"
+							    android:layout_height="wrap_content"
+							    android:hint="Sub Cost"
+							    android:inputType="numberDecimal"
+							    android:textSize="16sp" />
 							
 							<CheckBox
 								android:layout_height="wrap_content"
@@ -225,11 +225,11 @@
 							android:layout_gravity="right"/>
 
 						<EditText
-							android:layout_height="wrap_content"
-							android:layout_width="wrap_content"
-							android:inputType="none"
-							android:id="@+id/txt_markup_profits"
-							android:textSize="16sp"/>
+						    android:id="@+id/txt_markup_profits"
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:inputType="numberDecimal"
+						    android:textSize="16sp" />
 
 					</TableRow>
 
@@ -277,12 +277,11 @@
 									android:id="@+id/lbl_tax_percent"/>
 
 								<EditText
-									android:layout_height="wrap_content"
-									android:inputType="none"
-									android:layout_width="wrap_content"
-									android:id="@+id/txt_tax_percent"
-									android:textSize="16sp"/>
-								
+								    android:id="@+id/txt_tax_percent"
+								    android:layout_width="wrap_content"
+								    android:layout_height="wrap_content"
+								    android:inputType="numberDecimal"
+								    android:textSize="16sp" />
 
 							</TableRow>
 
@@ -302,12 +301,12 @@
 							android:layout_gravity="right"/>
 
 						<EditText
-							android:layout_height="wrap_content"
-							android:inputType="none"
-							android:layout_width="wrap_content"
-							android:id="@+id/txt_item_tax_amount"
-							android:textSize="16sp"
-							android:hint="Tax payable"/>
+						    android:id="@+id/txt_item_tax_amount"
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:hint="Tax payable"
+						    android:inputType="numberDecimal"
+						    android:textSize="16sp" />
 
 					</TableRow>
 
