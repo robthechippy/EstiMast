@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.view.*;
 import android.widget.*;
 import android.text.*;
+import android.app.ActionBar;
+//import android.app.Activity;
 
 public class ItemEdit extends Activity
 {
@@ -26,7 +28,8 @@ public class ItemEdit extends Activity
 	
 	ItemHelper itemHelper = null;
 	
-	
+	Cursor itemList=null;
+	Cursor item=null;
 	
     /** Called when the activity is first created. */
     @Override
@@ -220,13 +223,71 @@ public class ItemEdit extends Activity
 		EditText markup=(EditText)findViewById(R.id.txt_markup);
 		markup.addTextChangedListener(markupChanged);
 		
+		//For testing only
+		//Call a function to load ids as past from catalogue list.
+		itemList=itemHelper.getAllItems();
+		first_item();
 		//Now load the actual data into the page.
-		loadPage();
+		//loadPage();
 		
 		
     }
-	
-	public void onTaxClicked(View view){
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	//Inflate the items for use in the action bar
+    	MenuInflater inflater = getMenuInflater();
+    	inflater.inflate(R.menu.item_edit_actions, menu);
+    	return super.onCreateOptionsMenu(menu);
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem mItem) {
+    	//Handle selections on the action bar.
+    	switch (mItem.getItemId()) {
+    		case R.id.action_previous:
+    			//Save data first
+    			save_data();
+    			prev_item();
+    			return true;	
+    		
+    		case R.id.action_next:
+    			//Save data first
+    			save_data();
+    			next_item();
+    			return true;
+    			
+    		case R.id.action_delete:
+    			String[] id={itemHelper.getID(itemList)};
+    			itemHelper.deleteItem(id);
+    			itemList=itemHelper.getAllItems();
+    			itemList.moveToFirst();
+    			loadPage();
+    			return true;
+    		   
+    		case R.id.action_new:
+    			//Save data first
+    			save_data();
+    			int Iid=itemHelper.insertItem("New");
+    			itemList=itemHelper.getAllItems();
+    			itemList.moveToFirst();
+    			while((!itemList.isAfterLast()) && (!(itemHelper.getIDint(itemList)==Iid))) {
+    				itemList.moveToNext();
+    				loadPage();
+    			}
+    			return true;
+    			
+    		case R.id.action_undo:
+    			//Simply reload the page.
+    			loadPage();
+    			return true;
+    			
+    		default:
+    			return super.onOptionsItemSelected(mItem);
+    	}
+    } 
+    	
+    public void onTaxClicked(View view){
 		
 		boolean checked = ((CheckBox) view).isChecked();
 		float unitcost;
@@ -318,18 +379,46 @@ public class ItemEdit extends Activity
 		
 	}
 	
+	public void first_item() {
+		itemList.moveToFirst();
+		
+		loadPage();
+	}
+	
+	public void last_item() {
+		itemList.moveToLast();
+		
+		loadPage();
+	}
+	
+	public void next_item() {
+		itemList.moveToNext();
+		if(itemList.isAfterLast()) {
+			first_item();
+		}
+		else {
+			
+			loadPage();
+		}
+	}
+	
+	public void prev_item() {
+		itemList.moveToPrevious();
+		if(itemList.isBeforeFirst()) {
+			last_item();
+		}
+		else {
+			
+			loadPage();
+		}
+	}
+	
 	//public void loadPage(Cursor item) {
 	public void loadPage() {
 		
-		//For testing only
-		Cursor itemList=null;
-		Cursor item=null;
-		itemList=itemHelper.getAllItems();
-		itemList.moveToFirst();
 		String id=itemHelper.getID(itemList);
 		item=itemHelper.getCurrentItem(id);
 		item.moveToFirst();
-		//end of testing code
 		
 		/* Setup catagory spinner */
 		loadSpnCatData();
@@ -360,8 +449,8 @@ public class ItemEdit extends Activity
 		tmpTxt.setText(Float.toString( itemHelper.getUnitCost(item)));
 		tmpTxt=(EditText)findViewById(R.id.txt_markup);
 		tmpTxt.setText(Float.toString( itemHelper.getMarkup(item)));
-		tmpTxt=(EditText)findViewById(R.id.txt_cost_unit);
-		tmpTxt.setText(Float.toString( itemHelper.getUnitCost(item)));
+		tmpTxt=(EditText)findViewById(R.id.txt_pkt_qty);
+		tmpTxt.setText(Float.toString( itemHelper.getUnitQty(item)));
 		tmpTxt=(EditText)findViewById(R.id.txt_item_len);
 		tmpTxt.setText(Float.toString( itemHelper.getItemLen(item)));
 		tmpTxt=(EditText)findViewById(R.id.txt_item_width);
@@ -369,9 +458,9 @@ public class ItemEdit extends Activity
 		tmpTxt=(EditText)findViewById(R.id.txt_item_hgt);
 		tmpTxt.setText(Float.toString( itemHelper.getItemHeight(item)));
 		tmpTxt=(EditText)findViewById(R.id.txt_item_stock_onhand);
-		tmpTxt.setText(Float.toString( itemHelper.getItemStockOnHand(item)));
+		tmpTxt.setText(Integer.toString( itemHelper.getItemStockOnHand(item)));
 		tmpTxt=(EditText)findViewById(R.id.txt_item_stock_onorder);
-		tmpTxt.setText(Float.toString( itemHelper.getItemStockOnOrder(item)));
+		tmpTxt.setText(Integer.toString( itemHelper.getItemStockOnOrder(item)));
 		
 		//Now the rest of the data that needs some thought.
 		//First up is the item catagory
@@ -392,7 +481,7 @@ public class ItemEdit extends Activity
 		String frac = Float.toString(itemHelper.getItemLenFrac(item));
 		Boolean changed = false;
 		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_len_1);
-		if(frac.matches("1.0")) {
+		if(frac.matches("1.0") | frac.matches("1")) {
 			tmpRad.setChecked(true);
 			changed = true;
 		}
@@ -436,7 +525,7 @@ public class ItemEdit extends Activity
 		frac = Float.toString(itemHelper.getItemWidthFrac(item));
 		changed = false;
 		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_width_1);
-		if(frac.matches("1.0")) {
+		if(frac.matches("1.0") | frac.matches("1")) {
 			tmpRad.setChecked(true);
 			changed = true;
 		}
@@ -480,7 +569,7 @@ public class ItemEdit extends Activity
 		frac = Float.toString(itemHelper.getItemHeightFrac(item));
 		changed = false;
 		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_hgt_1);
-		if(frac.matches("1.0")) {
+		if(frac.matches("1.0") | frac.matches("1")) {
 			tmpRad.setChecked(true);
 			changed = true;
 		}
@@ -523,8 +612,179 @@ public class ItemEdit extends Activity
 		
 	}
 	
+	private void save_data() {
+		/* updateItem(String[] id, String catagory, String code, String description, String unit, float unitQty,
+				float unitCost, float markup, int taxable, String taxtype, String itemType, float itemLen,
+				float itemLenFrac, float itemWidth, float itemWidthFrac, float itemHeight, float itemHeightFrac,
+				String availableSizes, int supplier, String dateChecked, int stockOnHand, int stockOnOrder,
+				String barcode, String location, String photo) */
 		
-	private int getIndex(Spinner spinner, String myString){
+		String[] id={itemHelper.getID(item)};
+		
+		EditText tmpTxt=(EditText)findViewById(R.id.txt_item_code);
+		String code = tmpTxt.getText().toString();
+		
+		tmpTxt=(EditText)findViewById(R.id.txt_item_desc);
+		String description = tmpTxt.getText().toString();
+		
+		tmpTxt=(EditText)findViewById(R.id.txt_item_checked_date);
+		String dateChecked = tmpTxt.getText().toString();
+		
+		tmpTxt=(EditText)findViewById(R.id.txt_item_stock_barcode);
+		String barcode = tmpTxt.getText().toString();
+		
+		tmpTxt=(EditText)findViewById(R.id.txt_item_stock_location);
+		String location = tmpTxt.getText().toString();
+		
+		//Now some floating values
+		tmpTxt=(EditText)findViewById(R.id.txt_cost_unit);
+		float unitCost = Float.valueOf(tmpTxt.getText().toString());
+		
+		tmpTxt=(EditText)findViewById(R.id.txt_markup);
+		float markup = Float.valueOf(tmpTxt.getText().toString());
+		
+		tmpTxt=(EditText)findViewById(R.id.txt_pkt_qty);
+		float unitQty = Float.valueOf(tmpTxt.getText().toString());
+		
+		tmpTxt=(EditText)findViewById(R.id.txt_item_len);
+		float itemLen = Float.valueOf(tmpTxt.getText().toString());
+		
+		tmpTxt=(EditText)findViewById(R.id.txt_item_width);
+		float itemWidth = Float.valueOf(tmpTxt.getText().toString());
+		
+		tmpTxt=(EditText)findViewById(R.id.txt_item_hgt);
+		float itemHeight = Float.valueOf(tmpTxt.getText().toString());
+		
+		tmpTxt=(EditText)findViewById(R.id.txt_item_stock_onhand);
+		int stockOnHand = Integer.parseInt(tmpTxt.getText().toString());
+		
+		tmpTxt=(EditText)findViewById(R.id.txt_item_stock_onorder);
+		int stockOnOrder = Integer.parseInt(tmpTxt.getText().toString());
+		
+		//Now the rest of the data that needs some thought.
+		//First up is the item catagory
+		int tmpI = spnCat.getSelectedItemPosition();
+		String catagory = spnCat.getItemAtPosition(tmpI).toString();
+		
+		tmpI = spnTax.getSelectedItemPosition();
+		String taxtype = spnTax.getItemAtPosition(tmpI).toString();
+		
+		tmpI = spnUnit.getSelectedItemPosition();
+		String unit = spnUnit.getItemAtPosition(tmpI).toString();
+		
+		tmpI = spnType.getSelectedItemPosition();
+		String itemType = spnType.getItemAtPosition(tmpI).toString();
+		 
+		//Tax check box
+		int taxable;
+		CheckBox tmpChk=(CheckBox)findViewById(R.id.chk_taxable);
+		if (tmpChk.isChecked()) {
+			taxable = 1;
+		} else {
+			taxable = 0;
+		}
+		
+		
+		//Now all the fraction radio buttons
+		RadioButton tmpRad=null;
+		Boolean changed = false;
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_len_1);
+		float itemLenFrac = 0;
+		if(tmpRad.isChecked()) {
+			itemLenFrac = (float) 1.0;
+			changed = true;
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_len_25);
+		if(tmpRad.isChecked()) {
+			itemLenFrac = (float) 0.25;
+			changed = true;
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_len_3);
+		if (tmpRad.isChecked()) {
+			itemLenFrac = (float) 0.3;
+			changed = true;
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_len_5);
+		if(tmpRad.isChecked()) {
+			itemLenFrac = (float) 0.5;
+			changed = true;
+		}		
+		if (!changed) {
+			tmpTxt=(EditText)findViewById(R.id.txt_item_frac_len_other);
+			if (tmpTxt.getText().length() == 0) itemLenFrac = (float)1.0;
+			else itemLenFrac = Float.valueOf(tmpTxt.getText().toString());
+		}
+		
+		//Width group
+		float itemWidthFrac = 0;
+		changed = false;
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_width_1);
+		if(tmpRad.isChecked()) {
+			itemWidthFrac = (float) 1.0;
+			changed = true;
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_width_25);
+		if(tmpRad.isChecked()) {
+			itemWidthFrac = (float) 0.25;
+			changed = true;
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_width_3);
+		if (tmpRad.isChecked()) {
+			itemWidthFrac = (float) 0.3;
+			changed = true;
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_width_5);
+		if(tmpRad.isChecked()) {
+			itemWidthFrac = (float) 0.5;
+			changed = true;
+		}
+		if (!changed) {
+			tmpTxt=(EditText)findViewById(R.id.txt_item_frac_width_other);
+			if (tmpTxt.getText().length() == 0) itemWidthFrac = (float)1.0;
+			else itemWidthFrac = Float.valueOf(tmpTxt.getText().toString());
+		}
+		
+		//Height group
+		float itemHeightFrac = 0;
+		changed = false;
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_hgt_1);
+		if(tmpRad.isChecked()) {
+			itemHeightFrac = (float) 1.0;
+			changed = true;
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_hgt_25);
+		if(tmpRad.isChecked()) {
+			itemHeightFrac = (float) 0.25;
+			changed = true;
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_hgt_3);
+		if (tmpRad.isChecked()) {
+			itemHeightFrac = (float) 0.3;
+			changed = true;
+		}
+		tmpRad=(RadioButton)findViewById(R.id.rad_item_frac_hgt_5);
+		if(tmpRad.isChecked()) {
+			itemHeightFrac = (float) 0.5;
+			changed = true;
+		}
+		if (!changed) {
+			tmpTxt=(EditText)findViewById(R.id.txt_item_frac_hgt_other);
+			if (tmpTxt.getText().length() == 0) {itemHeightFrac = (float)1.0;}
+			else {itemHeightFrac = Float.valueOf(tmpTxt.getText().toString());}
+		}
+		
+		String availableSizes = "";
+		int supplier = 0;
+		String photo = "";
+		
+		itemHelper.updateItem(id, catagory, code, description, unit, unitQty,
+				unitCost, markup, taxable, taxtype, itemType, itemLen,
+				itemLenFrac, itemWidth, itemWidthFrac, itemHeight, itemHeightFrac,
+				availableSizes, supplier, dateChecked, stockOnHand, stockOnOrder,
+				barcode, location, photo);
+	}
+		
+ 	private int getIndex(Spinner spinner, String myString){
 		 
 		  int index = 0;
 		 

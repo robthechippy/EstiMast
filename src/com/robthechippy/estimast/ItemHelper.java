@@ -50,10 +50,11 @@ class ItemHelper {
 		ContentValues cv=new ContentValues();
 		Long ID;
 
-		cv.put("catagory", 1);
+		cv.put("catagory", "Misc");
 		cv.put("code", code);
-		cv.put("unit", 1);
-		cv.put("itemType", 1);
+		cv.put("unit", "each");
+		cv.put("unitQty", 1);
+		cv.put("itemType", "Inventory");
 		cv.put("dateChecked", fmtDateAndTime.format(dateAndTime.getTime()));
 		
 
@@ -63,8 +64,8 @@ class ItemHelper {
 	}
 
 	//Update the item record
-	public void updateItem(String[] id, int catagory, String code, String description, int unit, float unitQty,
-				float unitCost, float markup, int taxable, int taxtype, int itemType, float itemLen,
+	public void updateItem(String[] id, String catagory, String code, String description, String unit, float unitQty,
+				float unitCost, float markup, int taxable, String taxtype, String itemType, float itemLen,
 				float itemLenFrac, float itemWidth, float itemWidthFrac, float itemHeight, float itemHeightFrac,
 				String availableSizes, int supplier, String dateChecked, int stockOnHand, int stockOnOrder,
 				String barcode, String location, String photo) {
@@ -99,7 +100,7 @@ class ItemHelper {
 	}
 
 	public void deleteItem(String[] id) {
-		//This will delete the job.
+		//This will delete the item.
 		db.getWritableDatabase().delete("items", "_id=?", id);
 
 		
@@ -132,6 +133,10 @@ class ItemHelper {
 
 	public String getUnit(Cursor c) {
 		return(c.getString(4));
+	}
+	
+	public int getUnitQty( Cursor c) {
+		return(c.getInt(5));
 	}
 
 	public float getUnitCost(Cursor c) {
@@ -209,5 +214,7 @@ class ItemHelper {
 		return(c.getString(24));
 	}
 
-	
+	public String path() {
+		return db.getReadableDatabase().getPath();
+	}
 }

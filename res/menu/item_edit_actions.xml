@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/action_previous"
+         android:title="Previous"
+         android:titleCondensed="Prev"
+         android:icon="@drawable/ic_action_previous_item" 
+         android:showAsAction="ifRoom">
+        
+    </item>
+    <item android:id="@+id/action_next" 
+        android:title="Next" 
+        android:titleCondensed="Next" 
+        android:icon="@drawable/ic_action_next_item" 
+        android:showAsAction="ifRoom">
+        
+    </item>
+    <item android:id="@+id/action_new" 
+        android:title="New" 
+        android:titleCondensed="New" 
+        android:icon="@drawable/ic_action_new" 
+        android:showAsAction="ifRoom">
+        
+    </item>
+    <item android:id="@+id/action_undo" 
+        android:title="Undo" 
+        android:icon="@drawable/ic_action_undo" 
+        android:titleCondensed="Undo" 
+        android:showAsAction="ifRoom">
+        
+    </item>
+    
+    <item android:id="@+id/action_delete" 
+        android:title="Delete" 
+        android:icon="@drawable/ic_action_discard" 
+        android:titleCondensed="Del" 
+        android:showAsAction="ifRoom">
+        
+    </item>
+    
+
+</menu>
