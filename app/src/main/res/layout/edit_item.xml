@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:id="@+id/tabhost">
+
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:orientation="vertical">
+
+		<TableLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:stretchColumns="1"
+			android:shrinkColumns="1">
+
+			<TableRow
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:text="Item code:"
+					android:textAppearance="?android:attr/textAppearanceSmall"
+					android:layout_width="wrap_content"
+                    tools:ignore="HardcodedText" />
+
+				<EditText
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:id="@+id/txt_item_code"
+					android:hint="Enter item code"
+					android:maxLines="1"
+					android:textSize="16sp"/>
+
+			</TableRow>
+
+			<TableRow
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:text="Catagory:"
+					android:textAppearance="?android:attr/textAppearanceSmall"
+					android:layout_width="wrap_content"
+					android:layout_gravity="right"/>
+
+				<Spinner
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:id="@+id/spn_catagory"/>
+
+			</TableRow>
+
+		</TableLayout>
+
+		<TabWidget
+			android:id="@android:id/tabs"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"/>
+
+		<FrameLayout
+			android:layout_height="match_parent"
+			android:layout_width="match_parent"
+			android:id="@android:id/tabcontent">
+
+			<ScrollView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:id="@+id/tabA">
+
+				<TableLayout
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:stretchColumns="1"
+					android:shrinkColumns="1">
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="match_parent">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Description:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:layout_width="match_parent"
+							android:hint="Enter a description here."
+							android:maxLines="3"
+							android:textSize="16sp"
+							android:id="@+id/txt_item_desc"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Cost / Unit:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="numberDecimal"
+							android:layout_width="match_parent"
+							android:id="@+id/txt_cost_unit"
+							android:hint="Cost"
+							android:textSize="16sp"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Unit:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right|center_vertical"/>
+
+						<LinearLayout>
+
+							<Spinner
+								android:layout_height="wrap_content"
+								android:layout_width="wrap_content"
+								android:id="@+id/spn_itemUnit"/>
+
+							<TextView
+								android:layout_height="wrap_content"
+								android:text="Qty:"
+								android:textAppearance="?android:attr/textAppearanceSmall"
+								android:layout_width="wrap_content"
+								android:id="@+id/lbl_pkt_qty"
+								android:layout_gravity="right|center_vertical"
+								android:layout_marginLeft="10dp"/>
+
+							<EditText
+								android:layout_height="wrap_content"
+								android:inputType="number"
+								android:layout_width="wrap_content"
+								android:hint="Pkt Qty"
+								android:textSize="16sp"
+								android:id="@+id/txt_pkt_qty"/>
+
+						</LinearLayout>
+
+					</TableRow>
+					
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Sub Cost:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right|center_vertical"
+							android:id="@+id/lbl_item_subCost"/>
+
+						<LinearLayout>
+
+							<EditText
+							    android:id="@+id/txt_item_subCost"
+							    android:layout_width="wrap_content"
+							    android:layout_height="wrap_content"
+							    android:hint="Sub Cost"
+							    android:inputType="numberDecimal"
+							    android:textSize="16sp" />
+							
+							<CheckBox
+								android:layout_height="wrap_content"
+								android:layout_width="wrap_content"
+								android:text="Use Sub Item"
+								android:textAppearance="?android:attr/textAppearanceSmall"
+								android:id="@+id/chk_item_useSub"
+								android:onClick="onTaxClicked"/>
+
+						</LinearLayout>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Markup %:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="numberDecimal"
+							android:layout_width="wrap_content"
+							android:hint="Enter markup %"
+							android:id="@+id/txt_markup"
+							android:textSize="16sp"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Profit:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+						    android:id="@+id/txt_markup_profits"
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:inputType="numberDecimal"
+						    android:textSize="16sp" />
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<CheckBox
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:text="Taxable"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:id="@+id/chk_taxable"
+							android:onClick="onTaxClicked"/>
+
+						<TableLayout
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:stretchColumns="3"
+							android:shrinkColumns="3">
+
+							<TableRow
+								android:layout_height="wrap_content"
+								android:layout_width="wrap_content">
+
+								<TextView
+									android:layout_height="wrap_content"
+									android:text="Tax:"
+									android:textAppearance="?android:attr/textAppearanceSmall"
+									android:layout_width="wrap_content"
+									android:layout_gravity="right|center_vertical"
+									android:id="@+id/lbl_taxType"/>
+
+								<Spinner
+									android:layout_height="wrap_content"
+									android:layout_width="wrap_content"
+									android:id="@+id/spn_item_taxType"/>
+								
+								<TextView
+									android:layout_height="wrap_content"
+									android:text="Tax percent:"
+									android:textAppearance="?android:attr/textAppearanceSmall"
+									android:layout_width="wrap_content"
+									android:layout_gravity="right|center_vertical"
+									android:id="@+id/lbl_tax_percent"/>
+
+								<EditText
+								    android:id="@+id/txt_tax_percent"
+								    android:layout_width="wrap_content"
+								    android:layout_height="wrap_content"
+								    android:inputType="numberDecimal"
+								    android:textSize="16sp" />
+
+							</TableRow>
+
+						</TableLayout>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Tax amount:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+						    android:id="@+id/txt_item_tax_amount"
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:hint="Tax payable"
+						    android:inputType="numberDecimal"
+						    android:textSize="16sp" />
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Sale price/Unit:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="numberDecimal"
+							android:layout_width="wrap_content"
+							android:id="@+id/txt_sale_price"
+							android:textSize="16sp"
+							android:hint="Final sale price"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Item type:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right|center_vertical"/>
+
+						<Spinner
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:id="@+id/spn_item_type"/>
+
+					</TableRow>
+
+				</TableLayout>
+
+			</ScrollView>
+
+			<ScrollView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:id="@+id/tabB">
+
+				<TableLayout
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:stretchColumns="1"
+					android:shrinkColumns="1">
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Item length:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="numberDecimal"
+							android:layout_width="wrap_content"
+							android:id="@+id/txt_item_len"
+							android:textSize="16sp"
+							android:hint="Enter item length"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Fraction:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<TableLayout
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content">
+
+							<TableRow
+								android:layout_height="wrap_content"
+								android:layout_width="wrap_content">
+
+								<RadioGroup
+									android:layout_height="match_parent"
+									android:layout_width="match_parent"
+									android:orientation="horizontal">
+
+									<RadioButton
+										android:layout_height="wrap_content"
+										android:layout_width="wrap_content"
+										android:id="@+id/rad_item_frac_len_1"
+										android:text="1.0"/>
+
+									<RadioButton
+										android:layout_height="wrap_content"
+										android:layout_width="wrap_content"
+										android:text="0.5"
+										android:id="@+id/rad_item_frac_len_5"/>
+
+									<RadioButton
+										android:layout_height="wrap_content"
+										android:layout_width="wrap_content"
+										android:id="@+id/rad_item_frac_len_3"
+										android:text="0.3"/>
+
+									<RadioButton
+										android:layout_height="wrap_content"
+										android:layout_width="wrap_content"
+										android:id="@+id/rad_item_frac_len_25"
+										android:text="0.25"/>
+
+								</RadioGroup>
+
+							</TableRow>
+
+							<TableLayout
+								android:layout_height="match_parent"
+								android:layout_width="match_parent">
+
+								<TableRow
+									android:layout_height="wrap_content"
+									android:layout_width="wrap_content">
+
+									<TextView
+										android:layout_height="wrap_content"
+										android:text="Other:"
+										android:textAppearance="?android:attr/textAppearanceSmall"
+										android:layout_width="wrap_content"/>
+
+									<EditText
+										android:layout_height="wrap_content"
+										android:inputType="numberDecimal"
+										android:layout_width="wrap_content"
+										android:textSize="16sp"
+										android:id="@+id/txt_item_frac_len_other"
+										android:hint="Enter different fraction"/>
+
+								</TableRow>
+
+							</TableLayout>
+
+						</TableLayout>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Item width:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="numberDecimal"
+							android:layout_width="wrap_content"
+							android:id="@+id/txt_item_width"
+							android:textSize="16sp"
+							android:hint="Enter item width"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Fraction:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<TableLayout
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content">
+
+							<TableRow
+								android:layout_height="wrap_content"
+								android:layout_width="wrap_content">
+
+								<RadioGroup
+									android:layout_height="match_parent"
+									android:layout_width="match_parent"
+									android:orientation="horizontal">
+
+									<RadioButton
+										android:layout_height="wrap_content"
+										android:layout_width="wrap_content"
+										android:id="@+id/rad_item_frac_width_1"
+										android:text="1.0"/>
+
+									<RadioButton
+										android:layout_height="wrap_content"
+										android:layout_width="wrap_content"
+										android:text="0.5"
+										android:id="@+id/rad_item_frac_width_5"/>
+
+									<RadioButton
+										android:layout_height="wrap_content"
+										android:layout_width="wrap_content"
+										android:id="@+id/rad_item_frac_width_3"
+										android:text="0.3"/>
+
+									<RadioButton
+										android:layout_height="wrap_content"
+										android:layout_width="wrap_content"
+										android:id="@+id/rad_item_frac_width_25"
+										android:text="0.25"/>
+
+								</RadioGroup>
+
+							</TableRow>
+
+							<TableLayout
+								android:layout_height="match_parent"
+								android:layout_width="match_parent">
+
+								<TableRow
+									android:layout_height="wrap_content"
+									android:layout_width="wrap_content">
+
+									<TextView
+										android:layout_height="wrap_content"
+										android:text="Other:"
+										android:textAppearance="?android:attr/textAppearanceSmall"
+										android:layout_width="wrap_content"/>
+
+									<EditText
+										android:layout_height="wrap_content"
+										android:inputType="numberDecimal"
+										android:layout_width="wrap_content"
+										android:textSize="16sp"
+										android:id="@+id/txt_item_frac_width_other"
+										android:hint="Enter different fraction"/>
+
+								</TableRow>
+
+							</TableLayout>
+
+						</TableLayout>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Item height:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="numberDecimal"
+							android:layout_width="wrap_content"
+							android:id="@+id/txt_item_hgt"
+							android:textSize="16sp"
+							android:hint="Enter item height"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Fraction:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<TableLayout
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content">
+
+							<TableRow
+								android:layout_height="wrap_content"
+								android:layout_width="wrap_content">
+
+								<RadioGroup
+									android:layout_height="match_parent"
+									android:layout_width="match_parent"
+									android:orientation="horizontal">
+
+									<RadioButton
+										android:layout_height="wrap_content"
+										android:layout_width="wrap_content"
+										android:id="@+id/rad_item_frac_hgt_1"
+										android:text="1.0"/>
+
+									<RadioButton
+										android:layout_height="wrap_content"
+										android:layout_width="wrap_content"
+										android:text="0.5"
+										android:id="@+id/rad_item_frac_hgt_5"/>
+
+									<RadioButton
+										android:layout_height="wrap_content"
+										android:layout_width="wrap_content"
+										android:id="@+id/rad_item_frac_hgt_3"
+										android:text="0.3"/>
+
+									<RadioButton
+										android:layout_height="wrap_content"
+										android:layout_width="wrap_content"
+										android:id="@+id/rad_item_frac_hgt_25"
+										android:text="0.25"/>
+
+								</RadioGroup>
+
+							</TableRow>
+
+							<TableLayout
+								android:layout_height="match_parent"
+								android:layout_width="match_parent">
+
+								<TableRow
+									android:layout_height="wrap_content"
+									android:layout_width="wrap_content">
+
+									<TextView
+										android:layout_height="wrap_content"
+										android:text="Other:"
+										android:textAppearance="?android:attr/textAppearanceSmall"
+										android:layout_width="wrap_content"/>
+
+									<EditText
+										android:layout_height="wrap_content"
+										android:inputType="numberDecimal"
+										android:layout_width="wrap_content"
+										android:textSize="16sp"
+										android:id="@+id/txt_item_frac_hgt_other"
+										android:hint="Enter different fraction"/>
+
+								</TableRow>
+
+							</TableLayout>
+
+						</TableLayout>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Available sizes:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<Button
+							android:layout_height="wrap_content"
+							style="?android:attr/buttonStyleSmall"
+							android:text="Add"
+							android:layout_width="wrap_content"
+							android:id="@+id/btn_item_sizes_add"/>
+
+						<LinearLayout
+							android:layout_height="wrap_content"
+							android:layout_width="match_parent"
+							android:orientation="horizontal">
+
+							<Button
+								android:layout_height="wrap_content"
+								style="?android:attr/buttonStyleSmall"
+								android:text="Delete"
+								android:layout_width="wrap_content"
+								android:id="@+id/btn_item_sizes_delete"
+								android:layout_weight="1.0"/>
+
+							<Button
+								android:layout_height="wrap_content"
+								style="?android:attr/buttonStyleSmall"
+								android:text="Calc. sizes"
+								android:layout_width="wrap_content"
+								android:layout_weight="1.0"
+								android:id="@+id/btn_item_sizes_calc"/>
+
+						</LinearLayout>
+
+					</TableRow>
+
+					<ListView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"/>
+
+				</TableLayout>
+
+			</ScrollView>
+
+			<ScrollView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:id="@+id/tabC">
+
+				<TableLayout
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:stretchColumns="1"
+					android:shrinkColumns="1">
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Supplier:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"/>
+
+						<Spinner
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:id="@+id/spn_item_edit_supplier"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"/>
+
+						<Button
+							android:layout_height="wrap_content"
+							style="?android:attr/buttonStyleSmall"
+							android:text="Add supplier"
+							android:layout_width="wrap_content"
+							android:id="@+id/btn_item_addsupplier"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="match_parent"
+						android:layout_width="match_parent">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Price checked:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="date"
+							android:layout_width="wrap_content"
+							android:id="@+id/txt_item_checked_date"
+							android:textSize="16sp"
+							android:hint="Date price last verified"/>
+
+					</TableRow>
+
+				</TableLayout>
+
+			</ScrollView>
+
+			<ScrollView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:id="@+id/tabD">
+
+				<TableLayout
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:stretchColumns="1"
+					android:shrinkColumns="1">
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Stock on hand"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="number"
+							android:layout_width="wrap_content"
+							android:id="@+id/txt_item_stock_onhand"
+							android:textSize="16sp"
+							android:hint="Amount of stock on hand."/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Stock on order:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="number"
+							android:layout_width="wrap_content"
+							android:id="@+id/txt_item_stock_onorder"
+							android:textSize="16sp"
+							android:hint="Count of stock on order."/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="match_parent"
+						android:layout_width="match_parent">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Total stock:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="number"
+							android:layout_width="wrap_content"
+							android:id="@+id/txt_item_stock_total"
+							android:textSize="16sp"
+							android:hint="On hand + on order"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Barcode:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="number"
+							android:layout_width="match_parent"
+							android:id="@+id/txt_item_stock_barcode"
+							android:textSize="16sp"
+							android:hint="Click and scan"/>
+
+					</TableRow>
+
+					<TableRow
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content">
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:text="Location:"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="wrap_content"
+							android:layout_gravity="right"/>
+
+						<EditText
+							android:layout_height="wrap_content"
+							android:inputType="textPersonName"
+							android:layout_width="wrap_content"
+							android:id="@+id/txt_item_stock_location"
+							android:textSize="16sp"
+							android:hint="Where the item is found"/>
+
+					</TableRow>
+
+					<ImageView
+						android:adjustViewBounds="true"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"/>
+
+				</TableLayout>
+
+			</ScrollView>
+
+		</FrameLayout>
+
+	</LinearLayout>
+
+</TabHost>
+

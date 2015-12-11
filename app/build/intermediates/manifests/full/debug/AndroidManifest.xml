@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.robthechippy.estimast"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:maxSdkVersion="19"
+        android:minSdkVersion="13"
+        android:targetSdkVersion="16" />
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+
+    <application
+        android:allowBackup="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Holo.Light" >
+        <activity
+            android:name="com.robthechippy.estimast.ClientSelect"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.robthechippy.estimast.ItemEdit"
+            android:label="@string/cat_item_form" >
+        </activity>
+        <activity
+            android:name="com.robthechippy.estimast.ClientDetails"
+            android:label="@string/title_activity_client_details" >
+        </activity>
+        <activity
+            android:name="com.robthechippy.estimast.JobList"
+            android:label="@string/title_activity_job_list" >
+        </activity>
+        <activity
+            android:name="com.robthechippy.estimast.JobDetails"
+            android:label="@string/title_activity_job_details"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.robthechippy.estimast.SectionDetails"
+            android:label="@string/title_activity_section_details"
+            android:windowSoftInputMode="stateHidden" >
+>
+        </activity>
+        <activity
+            android:name="com.robthechippy.estimast.Catalogue"
+            android:label="@string/title_activity_catalogue" >
+        </activity>
+        <activity
+            android:name="com.robthechippy.estimast.JobItemsEdit"
+            android:label="Job Items"
+            android:windowSoftInputMode="stateHidden" >
+>
+        </activity>
+        <activity
+            android:name="com.robthechippy.estimast.jobItemsSelect"
+            android:label="Select Items" >
+        </activity>
+    </application>
+
+</manifest>

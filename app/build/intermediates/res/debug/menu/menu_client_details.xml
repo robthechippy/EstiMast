@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.robthechippy.estimast.ClientDetails">
+
+    <item android:id="@id/action_undo"
+        android:title="Undo"
+        android:icon="@drawable/ic_action_undo"
+        android:showAsAction="ifRoom"/>
+    <item android:id="@+id/action_save"
+        android:title="Save"
+        android:icon="@drawable/ic_action_save"
+        android:showAsAction="ifRoom"/>
+    <item android:id="@id/action_delete"
+        android:title="Delete"
+        android:icon="@drawable/ic_action_discard"
+        android:showAsAction="ifRoom"/>
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item android:id="@+id/action_help"
+        android:title="Help"
+        android:orderInCategory="101"
+        android:showAsAction="never" />
+</menu>
+<!-- From: file:/D:/Program%20Files/Android/AppProjects/Estimast/app/src/main/res/menu/menu_client_details.xml -->

@@ -1,0 +1,75 @@
+AGGREGATED OVER LAST 24 HOURS:
+Per-Package Stats:
+  * com.robthechippy.estimast / u0a360:
+      * com.robthechippy.estimast / u0a360:
+               TOTAL: 9.1% (9.9MB-19MB-22MB/8.3MB-17MB-20MB over 22)
+                 Top: 9.1% (9.9MB-19MB-22MB/8.3MB-17MB-20MB over 22)
+          (Last Act): 1.3% (20MB-20MB-20MB/18MB-18MB-18MB over 1)
+            (Cached): 1.4% (13MB-13MB-13MB/12MB-12MB-12MB over 1)
+
+Summary:
+  * com.robthechippy.estimast / u0a360:
+           TOTAL: 9.1% (9.9MB-19MB-22MB/8.3MB-17MB-20MB over 22)
+             Top: 9.1% (9.9MB-19MB-22MB/8.3MB-17MB-20MB over 22)
+      (Last Act): 1.3% (20MB-20MB-20MB/18MB-18MB-18MB over 1)
+        (Cached): 1.4% (13MB-13MB-13MB/12MB-12MB-12MB over 1)
+
+Run time Stats:
+  SOff/Norm: +1h44m13s334ms
+       Mod : +1h18m0s229ms
+       Low : +2m26s289ms
+       Crit: +2m41s617ms
+  SOn /Norm: +2h27m28s407ms
+       Mod : +50m40s41ms
+       Low : +7m44s328ms
+       Crit: +15m45s259ms
+      TOTAL: +6h48m59s504ms
+
+          Start time: 2015-06-04 22:26:00
+  Total elapsed time: +1d0h5m3s899ms (partial) libdvm.so chromeview
+
+AGGREGATED OVER LAST 3 HOURS:
+Per-Package Stats:
+  * com.robthechippy.estimast / u0a360:
+      * com.robthechippy.estimast / u0a360:
+               TOTAL: 8.6% (10MB-15MB-20MB/8.6MB-14MB-18MB over 4)
+                 Top: 8.6% (10MB-15MB-20MB/8.6MB-14MB-18MB over 4)
+            (Cached): 0.22%
+
+Summary:
+  * com.robthechippy.estimast / u0a360:
+           TOTAL: 8.6% (10MB-15MB-20MB/8.6MB-14MB-18MB over 4)
+             Top: 8.6% (10MB-15MB-20MB/8.6MB-14MB-18MB over 4)
+        (Cached): 0.22%
+
+Run time Stats:
+  SOff/Norm: +24m39s482ms
+  SOn /Norm: +33m33s832ms
+       Mod : +19m40s535ms
+       Low : +39ms
+      TOTAL: +1h17m53s888ms
+
+          Start time: 2015-06-05 18:46:16
+  Total elapsed time: +3h44m45s458ms (partial) libdvm.so chromeview
+
+CURRENT STATS:
+Per-Package Stats:
+  * com.robthechippy.estimast / u0a360:
+      * com.robthechippy.estimast / u0a360:
+               TOTAL: 38% (10MB-15MB-20MB/8.6MB-14MB-18MB over 4)
+                 Top: 38% (10MB-15MB-20MB/8.6MB-14MB-18MB over 4)
+            (Cached): 0.99%
+
+Summary:
+  * com.robthechippy.estimast / u0a360:
+           TOTAL: 38% (10MB-15MB-20MB/8.6MB-14MB-18MB over 4)
+             Top: 38% (10MB-15MB-20MB/8.6MB-14MB-18MB over 4)
+        (Cached): 0.99%
+
+Run time Stats:
+  SOff/Norm: +1m23s712ms
+  SOn /Norm: +16m20s118ms (running)
+      TOTAL: +17m43s830ms
+
+          Start time: 2015-06-05 21:59:04
+  Total elapsed time: +31m57s664ms (partial) libdvm.so chromeview

@@ -1,0 +1,33 @@
+Applications Memory Usage (kB):
+Uptime: 172615531 Realtime: 1033045866
+
+** MEMINFO in pid 2217 [com.robthechippy.estimast] **
+                   Pss  Private  Private  Swapped     Heap     Heap     Heap
+                 Total    Dirty    Clean    Dirty     Size    Alloc     Free
+                ------   ------   ------   ------   ------   ------   ------
+  Native Heap        0        0        0        0     7400     7375       24
+  Dalvik Heap     7559     7356        0     7912    21320    18122     3198
+ Dalvik Other     1848     1660       24     1252                           
+        Stack       68       68        0        0                           
+       Cursor       48       48        0        0                           
+    Other dev     2464     2460        4        0                           
+     .so mmap     2191     1120      512     4024                           
+    .apk mmap      281        0      140        0                           
+    .ttf mmap       67        0       60        0                           
+    .dex mmap     1949       76      964      300                           
+   Other mmap       16        4        0        0                           
+      Unknown     3769     3768        0      280                           
+        TOTAL    20260    16560     1704    13768    28720    25497     3222
+ 
+ Objects
+               Views:      665         ViewRootImpl:        5
+         AppContexts:        8           Activities:        5
+              Assets:        3        AssetManagers:        3
+       Local Binders:       13        Proxy Binders:       35
+    Death Recipients:        0
+     OpenSSL Sockets:        0
+ 
+ SQL
+         MEMORY_USED:        0
+  PAGECACHE_OVERFLOW:        0          MALLOC_SIZE:       62
+ 

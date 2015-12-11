@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:id="@+id/llMain">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cll1"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Client:"
+            android:id="@+id/textView"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp" />
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lst_Client"
+        android:layout_alignParentLeft="true"
+        android:layout_above="@+id/crl2"
+        android:layout_below="@+id/cll1"
+        android:paddingLeft="20px"
+        android:paddingTop="35px"
+        android:paddingRight="20px" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height= "wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="76dp"
+        android:id="@+id/crl2">
+
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tbtn_Client_View"
+            android:checked="false"
+            android:textOff="View Jobs"
+            android:textOn="View Details"
+            android:textSize="20sp"
+            android:layout_marginLeft="47dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:onClick="onToggleClicked" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Catalogue"
+            android:id="@+id/btn_Catalogue"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/tbtn_Client_View"
+            android:layout_marginLeft="50dp"
+            android:onClick="onCatClick" />
+    </RelativeLayout>
+
+</RelativeLayout><!-- From: file:/D:/Program%20Files/Android/AppProjects/Estimast/app/src/main/res/layout/clientselect.xml -->

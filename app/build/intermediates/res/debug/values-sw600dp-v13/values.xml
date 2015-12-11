@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/D:/Program%20Files/Android/AppProjects/Estimast/app/src/main/res/values-sw600dp/refs.xml -->
+    <eat-comment/>
+    <item name="fragment_section" type="layout">@layout/fragment_section_grid</item>
+</resources>

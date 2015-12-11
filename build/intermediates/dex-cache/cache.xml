@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\Program Files\Android\AppProjects\Estimast\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="D:\Program Files\Android\AppProjects\Estimast\app\build\intermediates\pre-dexed\debug\classes-50e8ab74a97626ad7f9d20b912b3888b1edf534d.jar" />
+    </item>
+    <item
+        jar="D:\Users\Jarvises\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="D:\Program Files\Android\AppProjects\Estimast\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-23674baf255d6420a22935239f417040c2ea0326.jar" />
+    </item>
+    <item
+        jar="D:\Program Files\Android\AppProjects\Estimast\app\build\intermediates\exploded-aar\com.android.support\support-v13\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="0dcc55e70f7ebf7238fe2ec53f662eb378ab2668">
+        <dex dex="D:\Program Files\Android\AppProjects\Estimast\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-1d1616f71f338cecaed1815b69d477b63d5d5b00.jar" />
+    </item>
+    <item
+        jar="D:\Program Files\Android\AppProjects\Estimast\app\build\intermediates\exploded-aar\com.android.support\support-v13\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c2071dcaf7a008c3b01a6381a33be55396bab09">
+        <dex dex="D:\Program Files\Android\AppProjects\Estimast\app\build\intermediates\pre-dexed\debug\classes-f72b5a19b94470834f87caf3ee5cd688b9d8d52f.jar" />
+    </item>
+    <item
+        jar="D:\Program Files\Android\AppProjects\Estimast\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="D:\Program Files\Android\AppProjects\Estimast\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-56649dbb3e9c466ccde691fe91d88758ae205db0.jar" />
+    </item>
+
+</items>

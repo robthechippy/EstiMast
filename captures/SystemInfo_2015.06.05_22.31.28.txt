@@ -1,0 +1,53 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        45016ea8 com.robthechippy.estimast/.ClientSelect filter 45016ed0
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+
+Key Set Manager:
+  [com.robthechippy.estimast]
+      Signing KeySets: 5, 12
+
+Packages:
+  Package [com.robthechippy.estimast] (434afb78):
+    userId=10360 gids=[]
+    pkg=Package{45739d70 com.robthechippy.estimast}
+    codePath=/data/app/com.robthechippy.estimast-5.apk
+    resourcePath=/data/app/com.robthechippy.estimast-5.apk
+    nativeLibraryPath=/data/app-lib/com.robthechippy.estimast-5
+    versionCode=1 targetSdk=16
+    versionName=1.0
+    applicationInfo=ApplicationInfo{4572ef00 com.robthechippy.estimast}
+    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    dataDir=/data/data/com.robthechippy.estimast
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2015-06-05 22:23:49
+    firstInstallTime=2015-04-28 20:30:18
+    lastUpdateTime=2015-06-05 22:23:50
+    signatures=PackageSignatures{434afc40 [434b0e38]}
+    permissionsFixed=true haveGids=true installStatus=1
+    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    User 0:  installed=true blocked=false stopped=false notLaunched=false enabled=0
+    grantedPermissions:
+      android.permission.READ_PHONE_STATE
+mPackagesOnlyForOwnerUser:
+  package : com.android.mms
+  package : com.android.phone
+  package : com.sec.knox.containeragent
+mComponentsOnlyForOwnerUser:
+  package : com.android.contacts
+    cmp : com.android.contacts:com.android.contacts.activities.DialtactsActivity
+ 
+mEnforceCopyingLibPackages:
+mEnforceCopyingLibPackages  [0]: com.navigon.navigator_select_samsung_pac
+ 
+mSkippingApks:
+mSkippingApks  [0]: secimsfw.apk
+ 
+mSettings.mPackages:
+the number of packages is 407
+mPackages:
+the number of packages is 407
+'removable_preload.txt' does not exist!
+End!!!!
