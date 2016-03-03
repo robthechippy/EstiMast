@@ -65,6 +65,10 @@
             android:name=".jobItemsSelect"
             android:label="Select Items">
         </activity>
+		<activity
+			android:name=".CatagoryEdit"
+			android:label="Edit catagory">
+		</activity>
     </application>
 
 </manifest>

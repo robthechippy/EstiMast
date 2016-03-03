@@ -169,7 +169,6 @@ public class fragmentcatalogueitems extends ListFragment implements OnItemClickL
                 return true;
 
             case R.id.action_new:
-                //TODO
                 //Add a new item to the database
                 int itemid = itemHelper.insertItem("New");
                 String itemTxt=Integer.toString(itemid);
@@ -181,6 +180,14 @@ public class fragmentcatalogueitems extends ListFragment implements OnItemClickL
                 startActivity(intent);
                 itemHelper=null;
                 cItems.close();
+				return(true);
+				
+			case R.id.action_catedit:
+				//Open the catagory efit screen.
+				Intent intente = new Intent(getActivity(),CatagoryEdit.class);
+				intente.setAction(Intent.ACTION_VIEW);
+				startActivity(intente);
+				return(true);
 
         }
 

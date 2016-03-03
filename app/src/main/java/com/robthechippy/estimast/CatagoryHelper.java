@@ -17,11 +17,7 @@ class CatagoryHelper {
 		
 	}
 
-			/* Used to load current jobs into the list
-	public Cursor getCurrent() {
-		return(getReadableDatabase().rawQuery("SELECT * FROM jobs WHERE status<6 ORDER BY status",
-			null));
-	} */
+
 	
 			//Used to load all the catagories into the list
 	public Cursor getAll() {
@@ -66,12 +62,10 @@ class CatagoryHelper {
 	
 	public List<String> getAllLabels(){
 	
-	//public void getAllLabels(){
 		List<String> labels = new ArrayList<String>();
 		// Select All Query
 		Cursor cursor = db.getReadableDatabase().rawQuery("SELECT * FROM catagories", null);
-		//SQLiteDatabase db = this.getReadableDatabase();
-		//Cursor cursor = db.rawQuery("SELECT * FROM catagories", null);
+		
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
 			do {
@@ -81,7 +75,6 @@ class CatagoryHelper {
 			}
 		// closing connection
 		cursor.close();
-		//db.close();
 		// returning lables 
 		return labels;
 	}

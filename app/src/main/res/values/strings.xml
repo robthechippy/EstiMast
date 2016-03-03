@@ -13,7 +13,7 @@
     <string name="title_section2">Attachments</string>
     <string name="title_section3">Section 3</string>
     <string name="title_activity_section_details">Section Details</string>
-
+	<string name="action_catedit">Edit Catagories</string>
     <string-array name="lengths">
         <item>mm</item>
         <item>cm</item>
